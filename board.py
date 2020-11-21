@@ -11,7 +11,7 @@ def create_board():
     for x in range(1, BOARDSIZE+1):
         row = []
         for y in range(1, BOARDSIZE+1):
-            row.append([x, y, "."])
+            row.append(".")
         board.append(row)
 
 def printannotatedboard():
@@ -24,12 +24,12 @@ def printannotatedboard():
     """
 
     letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    rownum = 1
+    rownum = BOARDSIZE
     for row in board:
         print(rownum, end =" ")
         for square in row:
-            print(square[2], end =" ")
-        rownum += 1
+            print(square, end =" ")
+        rownum -= 1
         print("")
         
     #Prints the file letter

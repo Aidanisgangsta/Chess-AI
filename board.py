@@ -5,7 +5,7 @@ def create_board():
     """
     A function that creates the board object.\n
 
-    Creates a 8x8 grid of list which contain the x and y coordinates as well as the piece occupying the square.
+    Creates a 8x8 grid of list which contains the piece occupying the square.
     """
 
     for x in range(1, BOARDSIZE+1):

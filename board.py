@@ -20,7 +20,9 @@ def printannotatedboard():
 
      - At the start of every row it prints the row number.
      - At the bottom of every column it prints the column letter.
-     - Prints the 3rd item (piece) in the square list.
+     - Prints the piece in the square list.
+      - If there is no piece, a . will be printed.
+      - If there is a piece, the appropriate piece will be printed.
     """
 
     letters = ["a", "b", "c", "d", "e", "f", "g", "h"]

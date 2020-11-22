@@ -1,6 +1,19 @@
 BOARDSIZE = 8
 board = []
 
+FILE_LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"]
+
+ROW_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8]
+
+UNICODE_PIECE_SYMBOLS = {
+    "R": "♖", "r": "♜",
+    "N": "♘", "n": "♞",
+    "B": "♗", "b": "♝",
+    "Q": "♕", "q": "♛",
+    "K": "♔", "k": "♚",
+    "P": "♙", "p": "♟",
+}
+
 def create_board():
     """
     A function that creates the board object.\n
@@ -25,19 +38,18 @@ def printannotatedboard():
       - If there is a piece, the appropriate piece will be printed.
     """
 
-    letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
-    rownum = BOARDSIZE
+    row_num = BOARDSIZE - 1
     for row in board:
-        print(rownum, end =" ")
+        print(ROW_NUMBERS[row_num], end =" ")
         for square in row:
             print(square, end =" ")
-        rownum -= 1
         print("")
-        
+        row_num -= 1
+
     #Prints the file letter
     print(" ", end =" ")
     for i in range(BOARDSIZE):            
-        print(f"{letters[i]}", end =" ")
+        print(f"{FILE_LETTERS[i]}", end =" ")
 
 create_board()
 

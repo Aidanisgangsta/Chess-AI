@@ -15,3 +15,4 @@ Default Chess-AI does not use tables but can be much stronger with the user of t
 Chess-AI can also be made stronger by modifying the values of pieces and the pruning values. By modifying the pruning values, you can increase the depth at which it can analyse for a sacrafice of missing moves that may be pruned early as they need deep analysis to spot.
 
 # License
+Licensed under the [Apache License, Version 2.0](LICENSE).

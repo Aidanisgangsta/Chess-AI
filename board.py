@@ -12,20 +12,29 @@ UNICODE_PIECE_SYMBOLS = {
     "Q": "♕", "q": "♛",
     "K": "♔", "k": "♚",
     "P": "♙", "p": "♟",
+    "·": "·"
 }
 
-def create_board():
+def create_board(board: list) -> list:
     """
     A function that creates the board object.\n
 
     Creates a 8x8 grid of list which contains the piece occupying the square.
     """
 
-    for x in range(1, BOARDSIZE+1):
-        row = []
-        for y in range(1, BOARDSIZE+1):
-            row.append(".")
-        board.append(row)
+    #Creates board object
+    board = [
+        ["R", "N", "B", "K", "Q", "B", "N", "R"],
+        ["P", "P", "P", "P", "P", "P", "P", "P"],
+        ["·", "·", "·", "·", "·", "·", "·", "·"],
+        ["·", "·", "·", "·", "·", "·", "·", "·"],
+        ["·", "·", "·", "·", "·", "·", "·", "·"],
+        ["·", "·", "·", "·", "·", "·", "·", "·"],
+        ["p", "p", "p", "p", "p", "p", "p", "p"],
+        ["r", "n", "b", "k", "q", "b", "n", "r"]
+    ]
+
+    return board
 
 def printannotatedboard():
     """
@@ -34,7 +43,7 @@ def printannotatedboard():
      - At the start of every row it prints the row number.
      - At the bottom of every column it prints the column letter.
      - Prints the piece in the square list.
-      - If there is no piece, a . will be printed.
+      - If there is no piece, a · will be printed.
       - If there is a piece, the appropriate piece will be printed.
     """
 
@@ -42,15 +51,15 @@ def printannotatedboard():
     for row in board:
         print(ROW_NUMBERS[row_num], end =" ")
         for square in row:
-            print(square, end =" ")
+            print(f"{UNICODE_PIECE_SYMBOLS.get(square)} ", end =" ")
         print("")
         row_num -= 1
 
     #Prints the file letter
     print(" ", end =" ")
     for i in range(BOARDSIZE):            
-        print(f"{FILE_LETTERS[i]}", end =" ")
+        print(f"{FILE_LETTERS[i]} ", end =" ")
 
-create_board()
+board = create_board(board)
 
 printannotatedboard()

@@ -1,5 +1,17 @@
+import moves
+
 BOARDSIZE = 8
-board = []
+
+board = [
+    ["R", "N", "B", "K", "Q", "B", "N", "R"],
+    ["P", "P", "P", "P", "P", "P", "P", "P"],
+    ["·", "·", "·", "·", "·", "·", "·", "·"],
+    ["·", "·", "·", "·", "·", "·", "·", "·"],
+    ["·", "·", "·", "·", "·", "·", "·", "·"],
+    ["·", "·", "·", "·", "·", "·", "·", "·"],
+    ["p", "p", "p", "p", "p", "p", "p", "p"],
+    ["r", "n", "b", "k", "q", "b", "n", "r"]
+    ]
 
 FILE_LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
@@ -14,27 +26,6 @@ UNICODE_PIECE_SYMBOLS = {
     "P": "♙", "p": "♟",
     "·": "·"
 }
-
-def create_board(board: list) -> list:
-    """
-    A function that creates the board object.\n
-
-    Creates a 8x8 grid of list which contains the piece occupying the square.
-    """
-
-    #Creates board object
-    board = [
-        ["R", "N", "B", "K", "Q", "B", "N", "R"],
-        ["P", "P", "P", "P", "P", "P", "P", "P"],
-        ["·", "·", "·", "·", "·", "·", "·", "·"],
-        ["·", "·", "·", "·", "·", "·", "·", "·"],
-        ["·", "·", "·", "·", "·", "·", "·", "·"],
-        ["·", "·", "·", "·", "·", "·", "·", "·"],
-        ["p", "p", "p", "p", "p", "p", "p", "p"],
-        ["r", "n", "b", "k", "q", "b", "n", "r"]
-    ]
-
-    return board
 
 def printannotatedboard():
     """
@@ -60,6 +51,8 @@ def printannotatedboard():
     for i in range(BOARDSIZE):            
         print(f"{FILE_LETTERS[i]} ", end =" ")
 
-board = create_board(board)
+def main():
+    printannotatedboard()
 
-printannotatedboard()
+if __name__ == '__main__':
+    main()

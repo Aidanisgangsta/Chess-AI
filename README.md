@@ -1,7 +1,7 @@
 # Introduction
 Chess-AI is a chess engine coded 100% in python using no default chess libraries.
 
-All input data must entered using standard chess notation.
+All input data (moves) is entered in a format where the first 2 character are the square which the piece you want to move is currently on and the last 2 characters are the square that you want to move the piece to (e.g. b1c3).
 
 # Features
 1. Uses pure python with no chess python libraries.

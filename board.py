@@ -1,17 +1,19 @@
 import moves
 
+import math
+
 BOARDSIZE = 8
 
 board = (
-    ("R", "N", "B", "K", "Q", "B", "N", "R"),
-    ("P", "P", "P", "P", "P", "P", "P", "P"),
-    ("·", "·", "·", "·", "·", "·", "·", "·"),
-    ("·", "·", "·", "·", "·", "·", "·", "·"),
-    ("·", "·", "·", "·", "·", "·", "·", "·"),
-    ("·", "·", "·", "·", "·", "·", "·", "·"),
-    ("p", "p", "p", "p", "p", "p", "p", "p"),
-    ("r", "n", "b", "k", "q", "b", "n", "r")
-    )
+        "R", "N", "B", "K", "Q", "B", "N", "R",
+        "P", "P", "P", "P", "P", "P", "P", "P",
+        "·", "·", "·", "·", "·", "·", "·", "·",
+        "·", "·", "·", "·", "·", "·", "·", "·",
+        "·", "·", "·", "·", "·", "·", "·", "·",
+        "·", "·", "·", "·", "·", "·", "·", "·",
+        "p", "p", "p", "p", "p", "p", "p", "p",
+        "r", "n", "b", "k", "q", "b", "n", "r"
+        )
 
 FILE_LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
@@ -39,6 +41,13 @@ def printannotatedboard():
     """
 
     row_num = BOARDSIZE - 1
+
+    square_num = 0
+    for square in board:
+        
+        print(math.floor(square_num/BOARDSIZE))
+        square_num += 1
+
     for row in board:
         print(ROW_NUMBERS[row_num], end =" ")
         for square in row:

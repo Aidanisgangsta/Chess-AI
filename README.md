@@ -1,5 +1,6 @@
 # Introduction
 Chess-AI is a chess engine coded 100% in python using no default chess libraries.
+
 All input data must entered using standard chess notation.
 
 # Features

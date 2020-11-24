@@ -15,7 +15,7 @@ moves = {
 }
 
 def main():
-    board.printannotatedboard()
+    board.printboard()
 
 if __name__ == '__main__':
     main()

@@ -29,7 +29,7 @@ UNICODE_PIECE_SYMBOLS = {
     "·": "·"
 }
 
-def printannotatedboard():
+def printboard():
     """
     A function that prints the board showing the piece occupying the square with notation printed along the side of the board.\n
 
@@ -40,28 +40,29 @@ def printannotatedboard():
       - If there is a piece, the appropriate piece will be printed.
     """
 
-    row_num = BOARDSIZE - 1
+    row_num = BOARDSIZE
 
     square_num = 0
-    for square in board:
-        
-        print(math.floor(square_num/BOARDSIZE))
+    row_num = BOARDSIZE
+    for square in board:        
+        current_row = BOARDSIZE - math.floor(square_num/BOARDSIZE)
+        #Prints the row number for the first row
+        if square_num == 0:
+            print(row_num, end=' ')
+        if row_num == current_row:
+            print(f"{UNICODE_PIECE_SYMBOLS.get(square)} ", end =" ")
+        else:
+            row_num -= 1
+            print(f"\n{row_num} {UNICODE_PIECE_SYMBOLS.get(square)} ", end =" ")
         square_num += 1
 
-    for row in board:
-        print(ROW_NUMBERS[row_num], end =" ")
-        for square in row:
-            print(f"{UNICODE_PIECE_SYMBOLS.get(square)} ", end =" ")
-        print("")
-        row_num -= 1
-
     #Prints the file letter
-    print(" ", end =" ")
+    print("\n ", end = " ")
     for i in range(BOARDSIZE):            
         print(f"{FILE_LETTERS[i]} ", end =" ")
 
 def main():
-    printannotatedboard()
+    printboard()
 
 if __name__ == '__main__':
     main()

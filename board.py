@@ -59,6 +59,7 @@ def printboard():
     print("\n ", end = " ")
     for i in range(BOARDSIZE):            
         print(f"{FILE_LETTERS[i]} ", end =" ")
+    print("")
 
 def main():
     printboard()

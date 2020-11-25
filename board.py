@@ -26,7 +26,7 @@ UNICODE_PIECE_SYMBOLS = {
     "Q": "♕", "q": "♛",
     "K": "♔", "k": "♚",
     "P": "♙", "p": "♟",
-    "·": "·"
+    ".": "·"
 }
 
 def printboard():

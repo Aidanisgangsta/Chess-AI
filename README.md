@@ -16,7 +16,7 @@ The fist 2 digits are the coordinates of the piece you would like to move.
 
 The last 2 digits are the coordinates of the square you would like the piece to move to.
 
-Examples: b1c3 (Nc3 in starting position), d2d4 (d4 in starting position), e1g1 (0-0 or short castles assuming it is possible)
+Examples: b1c3 (Nc3 in starting position), d2d4 (d4 in starting position), e1g1 (Short castles assuming it is possible)
 
 # Limitations
 Default Chess-AI does not use tables but can be much stronger with the user of them. 

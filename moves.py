@@ -158,21 +158,34 @@ def move_checker(move: str) -> bool:
     legit_move = legit_move_checker()
 
     if legit_move == True:
-        #Find the piece that was moved
-        piece_moved = (board.board[array_values[0]]).casefold()
-        #Creates new board object
-        new_board = list(board.board)
-        #Replaces pieces old location with a blank square
-        new_board[array_values[0]] = "."
-        #Replaces the old square with the new piece
-        new_board[array_values[1]] = piece_moved
-
-        #Appends the old board to a list of all the board positions
-        board_history.append(board.board)
-        board.board = tuple(new_board)
+        modify_board(array_values)
         return True
     else:
         return False
+
+def modify_board(array_values: tuple):
+    """
+    A function that modifies the board to show the move that has been made.\n
+
+     - First finds the piece that was moved.
+     - A new board object is created as a list.
+     - The appropriate squares are replaced.
+     - The old board is added to a list containing all the previous board positions.
+     - The board is set to = the new board as a tuple.
+    """
+
+    #Find the piece that was moved
+    piece_moved = (board.board[array_values[0]]).casefold()
+    #Creates new board object
+    new_board = list(board.board)
+    #Replaces pieces old location with a blank square
+    new_board[array_values[0]] = "."
+    #Replaces the old square with the new piece
+    new_board[array_values[1]] = piece_moved
+
+    #Appends the old board to a list of all the board positions
+    board_history.append(board.board)
+    board.board = tuple(new_board)
 
 def main():
     board.printboard()

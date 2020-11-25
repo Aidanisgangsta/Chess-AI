@@ -11,9 +11,3 @@ moves = {
     "q": (N, E, S, W, N+W, N+E, S+W, S+E),
     "k": (N, E, S, W, N+W, N+E, S+W, S+E)
 }
-
-def main():
-    pass
-
-if __name__ == '__main__':
-    main()

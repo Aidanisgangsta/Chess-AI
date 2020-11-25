@@ -9,6 +9,15 @@ All input data (moves) is entered in a format where the first 2 character are th
 3. Takes advantage of 'chess engine tricks' to speed up analysis.
 4. Chess-AI allows for castling, en passant, promotion and under-promotion. 
 
+# Entering moves
+Moves are entered into Chess-AI in a 4 digit format.
+
+The fist 2 digits are the coordinates of the piece you would like to move.
+
+The last 2 digits are the coordinates of the square you would like the piece to move to.
+
+Examples: b1c3 (Nc3 in starting position), d2d4 (d4 in starting position), e1g1 (0-0 or short castles assuming it is possible)
+
 # Limitations
 Default Chess-AI does not use tables but can be much stronger with the user of them. 
 

@@ -48,7 +48,7 @@ def move_checker(move: str) -> bool:
     start_square = move[0:2]
     end_square = move[2:4]
 
-    def square_finder(coord) -> tuple:
+    def square_finder() -> tuple:
         """
         A function that finds the value in the board array of the start and end squares for a move.\n
 
@@ -65,7 +65,7 @@ def move_checker(move: str) -> bool:
 
         return start_square_array_value, end_square_array_value
 
-    def blank_checker():
+    def blank_checker() -> bool:
         """
         A function that checks whether the enter start square is blank or not.\n
 
@@ -148,7 +148,7 @@ def move_checker(move: str) -> bool:
             queen_check()
     
     #Gets a tuple containing the array values for the start square and end square for the move
-    array_values = square_finder(move)
+    array_values = square_finder()
     #Finds out if the start square entered is blank
     is_blank = blank_checker()
     #Checks if square is blank

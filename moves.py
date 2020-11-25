@@ -2,6 +2,8 @@ import board
 
 import re
 
+board_history = []
+
 N = -8
 E = 1
 S = 8
@@ -35,7 +37,8 @@ def make_move():
             if valid_move == True:
                 valid_move = move_checker(move)
                 if valid_move == True:
-                    print("\nOk, your move has been made")
+                    print("\nOk, your move has been made\n")
+                    board.printboard()
             else:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")
         else:
@@ -153,7 +156,20 @@ def move_checker(move: str) -> bool:
         return False
     #Checks if the move entered is a valid move by that piece
     legit_move = legit_move_checker()
+
     if legit_move == True:
+        #Find the piece that was moved
+        piece_moved = (board.board[array_values[0]]).casefold()
+        #Creates new board object
+        new_board = list(board.board)
+        #Replaces pieces old location with a blank square
+        new_board[array_values[0]] = "."
+        #Replaces the old square with the new piece
+        new_board[array_values[1]] = piece_moved
+
+        #Appends the old board to a list of all the board positions
+        board_history.append(board.board)
+        board.board = tuple(new_board)
         return True
     else:
         return False

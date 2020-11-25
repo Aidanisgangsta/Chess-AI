@@ -1,5 +1,3 @@
-import board
-
 N = -8
 E = 1
 S = 8
@@ -15,7 +13,7 @@ moves = {
 }
 
 def main():
-    board.printboard()
+    pass
 
 if __name__ == '__main__':
     main()

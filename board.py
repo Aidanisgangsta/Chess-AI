@@ -43,7 +43,6 @@ def printboard():
     row_num = BOARDSIZE
 
     square_num = 0
-    row_num = BOARDSIZE
     for square in board:        
         current_row = BOARDSIZE - math.floor(square_num/BOARDSIZE)
         #Prints the row number for the first row

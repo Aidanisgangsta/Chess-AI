@@ -19,7 +19,7 @@ FILE_LETTERS = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
 ROW_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8]
 
-UNICODE_PIECE_SYMBOLS = {
+PIECE_SYMBOLS = {
     "R": "♖", "r": "♜",
     "N": "♘", "n": "♞",
     "B": "♗", "b": "♝",
@@ -49,10 +49,10 @@ def printboard():
         if square_num == 0:
             print(row_num, end=' ')
         if row_num == current_row:
-            print(f"{UNICODE_PIECE_SYMBOLS.get(square)} ", end =" ")
+            print(f"{PIECE_SYMBOLS.get(square)} ", end =" ")
         else:
             row_num -= 1
-            print(f"\n{row_num} {UNICODE_PIECE_SYMBOLS.get(square)} ", end =" ")
+            print(f"\n{row_num} {PIECE_SYMBOLS.get(square)} ", end =" ")
         square_num += 1
 
     #Prints the file letter

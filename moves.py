@@ -113,10 +113,16 @@ def move_checker(move: str) -> bool:
                         piece_to_capture = board.board[end_array_location]
                         if piece_to_capture.isupper():
                             return True
+                        else:
+                            print("\nPlease enter a location which is not occupyed by your own piece")
+                else:
+                    print("\nPlease enter a location which that piece can move to")
             return False
 
         def rook_check():
-            pass
+            """
+            A function that checks if a rook move is posssible.
+            """
 
         def bishop_check():
             pass
@@ -124,15 +130,33 @@ def move_checker(move: str) -> bool:
         def king_check():
             pass
 
-        def knight_check():
-            pass
+        def knight_check():            
+            """
+            A function that checks if a knight move is posssible.
+            """
+
+            #Iterates over all possible knight moves
+            for move in available_moves:
+                #Checks if the start location + the change in location by the move = end location
+                if array_location + move == end_array_location:
+                    #Checks if the move is a move straight forward and the squares are clear
+                    if board.board[end_array_location] == ".":
+                        return True
+                    else:
+                        piece_to_capture = board.board[end_array_location]
+                        if piece_to_capture.isupper():
+                            return True
+                        else:
+                            print("\nPlease enter a location which is not occupyed by your own piece")
+                else:
+                    print("\nPlease enter a location which that piece can move to")
+            return False
 
         def queen_check():
             pass
 
         if piece_moved == "p":
-            legit_move = pawn_check()
-            if legit_move == True:
+            if pawn_check() == True:
                 return True
             else: 
                 return False
@@ -143,7 +167,10 @@ def move_checker(move: str) -> bool:
         elif piece_moved == "k":
             king_check()
         elif piece_moved == "n":
-            knight_check()
+            if knight_check() == True:
+                return True
+            else:
+                return False
         elif piece_moved == "q":
             queen_check()
     

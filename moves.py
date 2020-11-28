@@ -114,9 +114,9 @@ def move_checker(move: str) -> bool:
                         if piece_to_capture.isupper():
                             return True
                         else:
-                            print("\nPlease enter a location which is not occupyed by your own piece")
+                            print("\nPlease enter a valid move")
                             return False
-            print("\nPlease enter a location which that piece can move to")
+            print("\nPlease enter a valid move")
             return False
 
         def rook_check() -> bool:
@@ -197,9 +197,9 @@ def move_checker(move: str) -> bool:
                         if piece_to_capture.isupper():
                             return True
                         else:
-                            print("\nPlease enter a location which is not occupyed by your own piece")
+                            print("\nPlease enter a valid move")
                             return False
-            print("\nPlease enter a location which that piece can move to")
+            print("\nPlease enter a valid move")
             return False
 
         def knight_check() -> bool:            
@@ -219,9 +219,9 @@ def move_checker(move: str) -> bool:
                         if piece_to_capture.isupper():
                             return True
                         else:
-                            print("\nPlease enter a location which is not occupyed by your own piece")
+                            print("\nPlease enter a valid move")
                             return False
-            print("\nPlease enter a location which that piece can move to")
+            print("\nPlease enter a valid move")
             return False
 
         def queen_check() -> bool:
@@ -246,12 +246,12 @@ def move_checker(move: str) -> bool:
                                 if piece_to_capture.isupper():
                                     return True
                                 else:
-                                    print("\nPlease enter a location which is not occupyed by your own piece")
+                                    print("\nPlease enter a valid move")
                                     return False
                     else:
-                        print("\nPlease enter a location which that piece can move to")
+                        print("\nPlease enter a valid move")
                         return False
-            print("\nPlease enter a location which that piece can move to")
+            print("\nPlease enter a valid move")
             return False
 
         if piece_moved == "p":

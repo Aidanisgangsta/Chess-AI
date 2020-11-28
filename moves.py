@@ -91,10 +91,8 @@ def move_checker(move: str) -> bool:
         end_array_location = array_values[1]
         #Gets the piece you selected and converts it to lowercase
         piece_moved = (board.board[array_location]).casefold()
-        #Gets the dictionary of move values from the moves module
-        piece_moves_dict = moves
         #Finds the tuple of available moves from the dictionary of moves
-        available_moves = piece_moves_dict.get(piece_moved)
+        available_moves = moves.get(piece_moved)
 
         def pawn_check() -> bool:
             """

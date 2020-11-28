@@ -158,25 +158,25 @@ def move_checker(move: str) -> bool:
             for move in available_moves:
                 #Iterates over all the diagonals the bishop can possibly move on
                 for i in range(1, board.BOARDSIZE):
-                    #Checks if every square along the diagonal is blank
-                    if board.board[array_location + (i * move)] == ".":
-                        #Checks if the start location + the change is direction by the move in the array = end location
-                        if array_location + (i * move) == end_array_location:
-                            #Checks if the move lands on a clear square
-                            if board.board[end_array_location] == ".":
+                    #Checks to see if the index is within the tuple
+                    if (array_location + (i * move)) < 64 and (array_location + (i * move)) > -1:
+                        #Checks if every square along the diagonal is blank or if the end square can be captured
+                        if board.board[array_location + (i * move)] == ".":
+                            #Checks if the start location + the change is direction by the move in the array = end location
+                            if i * move == distance_moved:
+                                print("1")
+                                return True
+                        #Checks if the move is a possible capture
+                        elif board.board[array_location + (i * move)].isupper():
+                            if i * move == distance_moved:
+                                print("2")
                                 return True
                             else:
-                                #Checks if the move is a possible capture
-                                piece_to_capture = board.board[end_array_location]
-                                if piece_to_capture.isupper():
-                                    return True
-                                else:
-                                    print("\nPlease enter a location which is not occupyed by your own piece")
-                                    return False
-                    else:
-                        print("\nPlease enter a location which that piece can move to")
-                        return False
-            print("\nPlease enter a location which that piece can move to")
+                                print("\nPlease enter a valid move")
+                                return False
+                        else:
+                            break 
+            print("\nPlease enter a valid move")
             return False
 
         def king_check() -> bool:

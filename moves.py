@@ -119,21 +119,59 @@ def move_checker(move: str) -> bool:
             print("\nPlease enter a location which that piece can move to")
             return False
 
-        def rook_check():
+        def rook_check() -> bool:
             """
-            A function that checks if a rook move is posssible.
+            A function that checks if a rook move is possible
             """
 
             #Iterates over every possible rook move
             for move in available_moves:
-                pass
+                #Iterates over all the rows the rook can possibly move on
+                for i in range(1, board.BOARDSIZE):
+                    #Checks if the start location + the change is direction by the move in the array = end location
+                    if array_location + (i * move) == end_array_location:
+                        #Checks if the move is a move straight forward and the squares are clear
+                        if board.board[end_array_location] == ".":
+                            return True
+                        else:
+                            #Checks if the move is a possible capture
+                            piece_to_capture = board.board[end_array_location]
+                            if piece_to_capture.isupper():
+                                return True
+                            else:
+                                print("\nPlease enter a location which is not occupyed by your own piece")
+                                return False
+            print("\nPlease enter a location which that piece can move to")
+            return False
 
-        def bishop_check():
-            pass
+        def bishop_check() -> bool:
+            """
+            A function that checks if a bishop move is possible
+            """
+
+            #Iterates over every possible bishop move
+            for move in available_moves:
+                #Iterates over all the diagonals the bishop can possibly move on
+                for i in range(1, board.BOARDSIZE):
+                    #Checks if the start location + the change is direction by the move in the array = end location
+                    if array_location + (i * move) == end_array_location:
+                        #Checks if the move is a move straight forward and the squares are clear
+                        if board.board[end_array_location] == ".":
+                            return True
+                        else:
+                            #Checks if the move is a possible capture
+                            piece_to_capture = board.board[end_array_location]
+                            if piece_to_capture.isupper():
+                                return True
+                            else:
+                                print("\nPlease enter a location which is not occupyed by your own piece")
+                                return False
+            print("\nPlease enter a location which that piece can move to")
+            return False
 
         def king_check() -> bool:
             """
-            A function that checks if a pawn move is possible
+            A function that checks if a king move is possible
             """
 
             #Iterates over every possible king move
@@ -176,8 +214,30 @@ def move_checker(move: str) -> bool:
             print("\nPlease enter a location which that piece can move to")
             return False
 
-        def queen_check():
-            pass
+        def queen_check() -> bool:
+            """
+            A function that checks if a queen move is possible
+            """
+
+            #Iterates over every possible queen move
+            for move in available_moves:
+                #Iterates over all the diagonals and rows the queen can possibly move on
+                for i in range(1, board.BOARDSIZE):
+                    #Checks if the start location + the change is direction by the move in the array = end location
+                    if array_location + (i * move) == end_array_location:
+                        #Checks if the move is a move straight forward and the squares are clear
+                        if board.board[end_array_location] == ".":
+                            return True
+                        else:
+                            #Checks if the move is a possible capture
+                            piece_to_capture = board.board[end_array_location]
+                            if piece_to_capture.isupper():
+                                return True
+                            else:
+                                print("\nPlease enter a location which is not occupyed by your own piece")
+                                return False
+            print("\nPlease enter a location which that piece can move to")
+            return False
 
         if piece_moved == "p":
             if pawn_check():
@@ -185,9 +245,15 @@ def move_checker(move: str) -> bool:
             else: 
                 return False
         elif piece_moved == "r":
-            rook_check()
+            if rook_check():
+                return True
+            else: 
+                return False
         elif piece_moved == "b":
-            bishop_check()
+            if bishop_check():
+                return True
+            else: 
+                return False
         elif piece_moved == "k":
             if king_check():
                 return True
@@ -199,7 +265,10 @@ def move_checker(move: str) -> bool:
             else:
                 return False
         elif piece_moved == "q":
-            queen_check()
+            if queen_check():
+                return True
+            else:
+                return False
     
     #Gets a tuple containing the array values for the start square and end square for the move
     array_values = square_finder()

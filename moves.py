@@ -154,6 +154,8 @@ def move_checker(move: str) -> bool:
             A function that checks if a bishop move is possible
             """
 
+            distance_moved = end_array_location - array_location
+
             #Iterates over every possible bishop move
             for move in available_moves:
                 #Iterates over all the diagonals the bishop can possibly move on

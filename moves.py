@@ -93,6 +93,8 @@ def move_checker(move: str) -> bool:
         piece_moved = (board.board[array_location]).casefold()
         #Finds the tuple of available moves from the dictionary of moves
         available_moves = moves.get(piece_moved)
+        #Total distance moved by the piece in the array
+        distance_moved = end_array_location - array_location
 
         def pawn_check() -> bool:
             """

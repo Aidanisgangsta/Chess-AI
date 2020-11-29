@@ -39,6 +39,7 @@ def make_move():
                 if valid_move == True:
                     print("\nOk, your move has been made\n")
                     board.printboard()
+                    break
             else:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")
         else:

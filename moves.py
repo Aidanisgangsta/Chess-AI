@@ -2,6 +2,11 @@ import board
 
 import re
 
+#Variable which is 1 when it is whites move and -1 when it is blacks move. 
+#Keeps track of whose move it is and gets multiplied by the move value when checking if the move is valid.
+#This is so pawn moves are properly tested.
+whos_move = 1
+
 board_history = []
 
 N = -8

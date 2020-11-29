@@ -46,6 +46,15 @@ def make_move():
             print("\nPlease enter a move in the correct format (e.g. a1c3)")
 
 def move_checker(move: str) -> bool:
+    """
+    A function that checks if the entered is a valid move.\n
+
+     - Finds the location in the board array for the start position and end position of the move.
+     - Checks if the starting location is a piece you can move.
+     - Finds the piece that you moved.
+     - Checks if that piece makes a legal move (Does not check for checks, that is done later).
+    """
+
     start_square = move[0:2]
     end_square = move[2:4]
 

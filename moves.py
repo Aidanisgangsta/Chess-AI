@@ -39,9 +39,9 @@ def make_move() -> None:
         if len(move) == 4:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
-            if valid_move == True:
+            if valid_move:
                 valid_move = move_checker(move)
-                if valid_move == True:
+                if valid_move:
                     print("\nOk, your move has been made\n")
                     board.printboard()
                     #Changes whos move it is
@@ -128,9 +128,9 @@ def move_checker(move: str) -> bool:
         #Gets the array locatoin of the end square of the piece
         end_array_location = array_values[1]
         #Gets the piece you selected and converts it to lowercase
-        piece_moved = (board.board[array_location]).casefold()
+        piece_moved = board.board[array_location]
         #Finds the tuple of available moves from the dictionary of moves
-        available_moves = moves.get(piece_moved)
+        available_moves = moves.get(piece_moved.casefold())
         #Total distance moved by the piece in the array
         distance_moved = end_array_location - array_location
 
@@ -156,9 +156,9 @@ def move_checker(move: str) -> bool:
                             if piece_to_capture.islower():
                                 return True
                         else:
-                            print("\nPlease enter a valid move1")
+                            print("\nPlease enter a valid move")
                             return False
-            print("\nPlease enter a valid move2")
+            print("\nPlease enter a valid move")
             return False
 
         def rook_check() -> bool:
@@ -316,32 +316,33 @@ def move_checker(move: str) -> bool:
             print("\nPlease enter a valid move")
             return False
 
-        if piece_moved == "p":
+        piece_lower = piece_moved.casefold()
+        if piece_lower == "p":
             if pawn_check():
                 return True
             else: 
                 return False
-        elif piece_moved == "r":
+        elif piece_lower == "r":
             if rook_check():
                 return True
             else: 
                 return False
-        elif piece_moved == "b":
+        elif piece_lower == "b":
             if bishop_check():
                 return True
             else: 
                 return False
-        elif piece_moved == "k":
+        elif piece_lower == "k":
             if king_check():
                 return True
             else:
                 return False
-        elif piece_moved == "n":
+        elif piece_lower == "n":
             if knight_check():
                 return True
             else:
                 return False
-        elif piece_moved == "q":
+        elif piece_lower == "q":
             if queen_check():
                 return True
             else:
@@ -377,7 +378,7 @@ def modify_board(array_values: tuple):
     """
 
     #Find the piece that was moved
-    piece_moved = (board.board[array_values[0]]).casefold()
+    piece_moved = board.board[array_values[0]]
     #Creates new board object
     new_board = list(board.board)
     #Replaces pieces old location with a blank square
@@ -393,7 +394,6 @@ def main():
     board.printboard()
     while True:
         make_move()
-        print(whos_move)
 
 if __name__ == '__main__':
     main()

@@ -23,7 +23,7 @@ moves = {
     "k": (N, E, S, W, N+W, N+E, S+W, S+E)
 }
 
-def make_move():
+def make_move() -> None:
     """
     Function which a user enters move and it is checked whether it meets the correct format.\n
 
@@ -355,7 +355,8 @@ def modify_board(array_values: tuple):
 
 def main():
     board.printboard()
-    make_move()
+    while True:
+        make_move()
 
 if __name__ == '__main__':
     main()

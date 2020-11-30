@@ -95,6 +95,26 @@ def move_checker(move: str) -> bool:
         else:
             return False
 
+    def colour_checker() -> bool:
+        """
+        A function which checks if the piece to move is the correct colour.
+        """
+
+        piece = board.board[array_values[0]]
+
+        if whos_move == 1:
+            if piece.islower():
+                return True
+            else:
+                print("\nPlease enter a valid move")
+                return False
+        elif whos_move == -1:
+            if piece.isupper():
+                return True
+            else:
+                print("\nPlease enter a valid move")
+                return False
+
     def legit_move_checker() -> bool:
         """
         A function that finds out if a move entered is a legitimate move according to the piece.\n
@@ -296,6 +316,10 @@ def move_checker(move: str) -> bool:
 
     #Finds out if the start square entered is blank
     if blank_checker():
+        return False
+
+    #Check if the piece entered is the correct colour
+    if colour_checker() == False:
         return False
 
     #Checks if the move entered is a valid move by that piece

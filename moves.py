@@ -293,15 +293,13 @@ def move_checker(move: str) -> bool:
     
     #Gets a tuple containing the array values for the start square and end square for the move
     array_values = square_finder()
-    #Finds out if the start square entered is blank
-    is_blank = blank_checker()
-    #Checks if square is blank
-    if is_blank == True:
-        return False
-    #Checks if the move entered is a valid move by that piece
-    legit_move = legit_move_checker()
 
-    if legit_move == True:
+    #Finds out if the start square entered is blank
+    if blank_checker():
+        return False
+
+    #Checks if the move entered is a valid move by that piece
+    if legit_move_checker():
         modify_board(array_values)
         return True
     else:

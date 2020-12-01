@@ -145,7 +145,16 @@ def move_checker(move: str) -> bool:
                 if array_location + (move * whos_move) == end_array_location:
                     #Checks if the move is a move straight forward and the squares are clear
                     if (move * whos_move) % 8 == 0 and board.board[end_array_location] == ".":
-                        return True
+                        #Checks if the move is 2 squares forward
+                        if move == -16:
+                            #Checks the square 1 square ahead of the pawn
+                            if board.board[array_location + (whos_move * -8)] == ".":
+                                return True
+                            else:
+                                print("\nPlease enter a valid move")
+                                return False
+                        else:
+                            return True
                     else:
                         #Checks if the move is a possible capture
                         piece_to_capture = board.board[end_array_location]

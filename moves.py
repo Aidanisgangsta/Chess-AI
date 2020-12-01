@@ -391,9 +391,7 @@ def modify_board(array_values: tuple):
     board.board = tuple(new_board)
 
 def main():
-    board.printboard()
-    while True:
-        make_move()
+    make_move()
 
 if __name__ == '__main__':
     main()

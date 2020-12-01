@@ -389,9 +389,3 @@ def modify_board(array_values: tuple):
     #Appends the old board to a list of all the board positions
     board_history.append(board.board)
     board.board = tuple(new_board)
-
-def main():
-    make_move()
-
-if __name__ == '__main__':
-    main()

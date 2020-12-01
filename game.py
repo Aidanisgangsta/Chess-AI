@@ -21,7 +21,7 @@ def threefold_check() -> bool:
 def main():
     board.printboard()
     while True:
-        moves.main()
+        moves.make_move()
         #Checks for threefold repition
         if threefold_check():
             print("\nDraw by threefold repition")

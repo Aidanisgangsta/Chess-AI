@@ -12,7 +12,6 @@ def threefold_check() -> bool:
 
     for board in moves.board_history:
         occurances = moves.board_history.count(board)
-        print(occurances)
         if occurances == 3:
             return True
         else:

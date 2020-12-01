@@ -60,9 +60,3 @@ def printboard():
     for i in range(BOARDSIZE):            
         print(f"{FILE_LETTERS[i]} ", end =" ")
     print("")
-
-def main():
-    printboard()
-
-if __name__ == '__main__':
-    main()

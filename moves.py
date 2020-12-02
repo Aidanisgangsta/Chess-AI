@@ -164,15 +164,24 @@ def move_checker(move: str) -> bool:
                         elif whos_move == -1:
                             if piece_to_capture.isupper():
                                 return True
+                            
+                    #Checks for en passant capture                            
+                    if piece_to_capture == ".":
+                        if whos_move == 1:
+                            if board.board[end_array_location + 8] == "p":
+                                board.board[end_array_location + 8] == "."
+                                return True
+                            else:
+                                return False
                         elif whos_move == -1:
                             if board.board[end_array_location - 8] == "P":
                                 board.board[end_array_location - 8] == "."
                                 return True
-                        else:
-                            print("\nPlease enter a valid move")
-                            return False
-            print("\nPlease enter a valid move")
-            return False
+                            else:
+                                return False
+                    else:
+                        print("\nPlease enter a valid move1")
+                        return False
 
         def rook_check() -> bool:
             """

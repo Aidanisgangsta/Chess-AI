@@ -106,13 +106,13 @@ def move_checker(move: str) -> bool:
         piece = board.board[array_values[0]]
 
         if whos_move == 1:
-            if piece.islower():
+            if piece.isupper():
                 return True
             else:
                 print("\nPlease enter a valid move")
                 return False
         elif whos_move == -1:
-            if piece.isupper():
+            if piece.islower():
                 return True
             else:
                 print("\nPlease enter a valid move")
@@ -159,10 +159,14 @@ def move_checker(move: str) -> bool:
                         #Checks if the move is a possible capture
                         piece_to_capture = board.board[end_array_location]
                         if whos_move == 1:
+                            if piece_to_capture.islower():
+                                return True
+                        elif whos_move == -1:
                             if piece_to_capture.isupper():
                                 return True
                         elif whos_move == -1:
-                            if piece_to_capture.islower():
+                            if board.board[end_array_location - 8] == "P":
+                                board.board[end_array_location - 8] == "."
                                 return True
                         else:
                             print("\nPlease enter a valid move")
@@ -188,13 +192,13 @@ def move_checker(move: str) -> bool:
                                 return True
                         #Checks if the move is a possible capture
                         elif whos_move == 1:
-                            if board.board[array_location + (i * move)].isupper():
+                            if board.board[array_location + (i * move)].islower():
                                 if i * move == distance_moved:
                                     return True
                                 else:
                                     break
                         elif whos_move == -1:
-                            if board.board[array_location + (i * move)].islower():
+                            if board.board[array_location + (i * move)].isupper():
                                 if i * move == distance_moved:
                                     return True
                                 else:
@@ -222,13 +226,13 @@ def move_checker(move: str) -> bool:
                                 return True
                         #Checks if the move is a possible capture
                         elif whos_move == 1:
-                            if board.board[array_location + (i * move)].isupper():
+                            if board.board[array_location + (i * move)].islower():
                                 if i * move == distance_moved:
                                     return True
                                 else:
                                     break
                         elif whos_move == -1:
-                            if board.board[array_location + (i * move)].islower():
+                            if board.board[array_location + (i * move)].isupper():
                                 if i * move == distance_moved:
                                     return True
                                 else:
@@ -254,10 +258,10 @@ def move_checker(move: str) -> bool:
                         #Checks if the move is a possible capture
                         piece_to_capture = board.board[end_array_location]
                         if whos_move == 1:
-                            if piece_to_capture.isupper():
+                            if piece_to_capture.islower():
                                 return True
                         elif whos_move == -1:
-                            if piece_to_capture.islower():
+                            if piece_to_capture.isupper():
                                     return True
                         else:
                             print("\nPlease enter a valid move")
@@ -280,10 +284,10 @@ def move_checker(move: str) -> bool:
                     else:
                         piece_to_capture = board.board[end_array_location]
                         if whos_move == 1:
-                            if piece_to_capture.isupper():
+                            if piece_to_capture.islower():
                                 return True
                         elif whos_move == -1:
-                            if piece_to_capture.islower():
+                            if piece_to_capture.isupper():
                                 return True
                         else:
                             print("\nPlease enter a valid move")
@@ -309,13 +313,13 @@ def move_checker(move: str) -> bool:
                                 return True
                         #Checks if the move is a possible capture
                         elif whos_move == 1:
-                            if board.board[array_location + (i * move)].isupper():
+                            if board.board[array_location + (i * move)].islower():
                                 if i * move == distance_moved:
                                     return True
                                 else:
                                     break
                         elif whos_move == -1:
-                            if board.board[array_location + (i * move)].islower():
+                            if board.board[array_location + (i * move)].isupper():
                                 if i * move == distance_moved:
                                     return True
                                 else:

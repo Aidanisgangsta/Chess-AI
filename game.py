@@ -2,6 +2,8 @@ import board
 import moves
 import chess_ai
 
+halfmove_checker = 0
+
 def threefold_check() -> bool:
     """
     A function that checks if a board state has occured three times.\n
@@ -21,9 +23,16 @@ def main():
     board.printboard()
     while True:
         moves.make_move()
+        halfmove_checker += 1
+
         #Checks for threefold repition
         if threefold_check():
             print("\nDraw by threefold repition")
+            break
+        
+        #Checks for 50 move rule
+        if halfmove_checker == 100:
+            print("\nDraw by 50 move rule")
             break
 
 main()

@@ -388,7 +388,7 @@ def move_checker(move: str) -> bool:
     else:
         return False
 
-def modify_board(array_values: tuple):
+def modify_board(array_values: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n
 

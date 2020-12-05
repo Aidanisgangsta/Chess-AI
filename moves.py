@@ -398,6 +398,15 @@ def check_checker(boardstate: tuple) -> bool:
      - If the king is under attack, it will return a True value otherwise it wil return False.
     """
 
+    #Finds location of current colours king 
+    for i in range(len(boardstate)):
+        if whos_move == 1:
+            if boardstate[i] == "K":
+                king_location = i
+        elif whos_move == -1:
+            if boardstate[i] == "k":
+                king_location == i
+
 def modify_board(array_values: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n
@@ -411,6 +420,7 @@ def modify_board(array_values: tuple) -> None:
 
     #Find the piece that was moved
     piece_moved = board.board[array_values[0]]
+    check_checker(board.board)
     #Creates new board object
     new_board = list(board.board)
     #Replaces pieces old location with a blank square

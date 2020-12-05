@@ -407,6 +407,18 @@ def check_checker(boardstate: tuple) -> bool:
             if boardstate[i] == "k":
                 king_location == i
 
+    #Iterates over every square in the board
+    for i in range(len(boardstate)):
+        #Checks if it is whites move
+        if whos_move == 1:
+            if boardstate[i].islower():
+                pass
+
+    def notation_creator():
+        """
+        A function that creates the notation from a piece location and king location.
+        """
+
 def modify_board(array_values: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n

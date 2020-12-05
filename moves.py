@@ -125,7 +125,7 @@ def move_checker(move: str) -> bool:
 
         #Gets the location in the array of the starting position of the piece
         array_location = array_values[0]
-        #Gets the array locatoin of the end square of the piece
+        #Gets the array location of the end square of the piece
         end_array_location = array_values[1]
         #Gets the piece you selected and converts it to lowercase
         piece_moved = board.board[array_location]
@@ -281,9 +281,9 @@ def move_checker(move: str) -> bool:
                             return False
             return False
 
-        def knight_check() -> bool:            
+        def knight_check() -> bool:
             """
-            A function that checks if a knight move is posssible.
+            A function that checks if a knight move is possible.
             """
 
             #Iterates over all possible knight moves

@@ -421,6 +421,15 @@ def check_checker(boardstate: tuple) -> bool:
         Used when checking if a move places the king in check
         """
 
+        #Finds the last 2 characters of the move
+        xcoord = king_location % 8 + 1
+        ycoord =  8 - ((king_location - xcoord + 1)/ 8)
+
+        endchars = f"{board.FILE_LETTERS[xcoord - 1]}{int(ycoord)}"
+        print(endchars)
+
+    notation_creator()
+
 def modify_board(array_values: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n

@@ -165,22 +165,31 @@ def move_checker(move: str) -> bool:
                             if piece_to_capture.isupper():
                                 return True
 
-                    new_board = list(board.board)        
-                    #Checks for en passant capture                            
+                    new_board = list(board.board)
+                    #Checks for en passant capture
                     if piece_to_capture == ".":
                         if whos_move == 1:
                             if board.board[end_array_location + 8] == "p":
-                                new_board[end_array_location + 8] = "."
-                                board.board = list(new_board)
-                                return True
+                                if board_history[-1][end_array_location - 8] == "p" and board_history[-1][end_array_location + 8] == ".":
+                                    new_board[end_array_location + 8] = "."
+                                    board.board = list(new_board)
+                                    return True
+                                else:
+                                    print("\nPlease enter a valid move")
+                                    return False
                             else:
+                                print("\nPlease enter a valid move")
                                 return False
                         elif whos_move == -1:
                             if board.board[end_array_location - 8] == "P":
-                                new_board[end_array_location - 8] = "."
-                                board.board = list(new_board)
-                                return True
+                                if board_history[-1][end_array_location - 8] == "p" and board_history[-1][end_array_location + 8] == ".":
+                                    new_board[end_array_location - 8] = "."
+                                    board.board = list(new_board)
+                                    return True
+                                else:
+                                    print("\nPlease enter a valid move")
                             else:
+                                print("\nPlease enter a valid move")
                                 return False
                     else:
                         print("\nPlease enter a valid move")

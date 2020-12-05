@@ -391,24 +391,6 @@ def move_checker(move: str) -> bool:
     else:
         return False
 
-def find_difference(list1: list, list2: list) -> list:
-    """
-    A function that finds the differences in two lists and returns a list of where the values are different.\n
-    Takes in 2 lists which must be the same length.
-    It then finds the differences in the list and returns them as an another list.
-    """
-
-    differences = []
-
-    for i in range(len(list1)):
-        val1 = list1[i]
-        val2 = list2[i]
-
-        if val1 != val2:
-            differences.append(i)
-    
-    return differences
-
 def modify_board(array_values: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n

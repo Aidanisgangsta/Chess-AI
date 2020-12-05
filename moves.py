@@ -48,6 +48,8 @@ def make_move() -> None:
                     global whos_move
                     whos_move *= -1
                     break
+                else:
+                    print("\nPlease enter a valid move")
             else:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")
         else:
@@ -405,30 +407,25 @@ def check_checker(boardstate: tuple) -> bool:
                 king_location = i
         elif whos_move == -1:
             if boardstate[i] == "k":
-                king_location == i
+                king_location = i
 
     #Iterates over every square in the board
+    #Checks if the piece on that sqaure can attack the king
     for i in range(len(boardstate)):
         #Checks if it is whites move
         if whos_move == 1:
             if boardstate[i].islower():
-                pass
-
-    def notation_creator():
-        """
-        A function that creates the notation from a piece location and king location.\n
-
-        Used when checking if a move places the king in check
-        """
-
-        #Finds the last 2 characters of the move
-        xcoord = king_location % 8 + 1
-        ycoord =  8 - ((king_location - xcoord + 1)/ 8)
-
-        endchars = f"{board.FILE_LETTERS[xcoord - 1]}{int(ycoord)}"
-        print(endchars)
-
-    notation_creator()
+                move = notation_creator()
+                #Checks if the move is a legit move
+                if move_checker(move):
+                    return False
+        elif whos_move == -1:
+            if boardstate[i].isupper():
+                move = notation_creator()
+                #Checks if the move is a legit move
+                if move_checker(move):
+                    return False
+    return True          
 
 def modify_board(array_values: tuple) -> None:
     """
@@ -450,6 +447,11 @@ def modify_board(array_values: tuple) -> None:
     new_board[array_values[0]] = "."
     #Replaces the old square with the new piece
     new_board[array_values[1]] = piece_moved
+
+    #Checks if the new board has the players king in check
+    if check_checker(new_board):
+        print('1')
+        return False
 
     #Appends the old board to a list of all the board positions
     board_history.append(board.board)

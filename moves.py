@@ -416,7 +416,9 @@ def check_checker(boardstate: tuple) -> bool:
 
     def notation_creator():
         """
-        A function that creates the notation from a piece location and king location.
+        A function that creates the notation from a piece location and king location.\n
+
+        Used when checking if a move places the king in check
         """
 
 def modify_board(array_values: tuple) -> None:

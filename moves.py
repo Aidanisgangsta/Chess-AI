@@ -151,7 +151,6 @@ def move_checker(move: str) -> bool:
                             if board.board[array_location + (whos_move * -8)] == ".":
                                 return True
                             else:
-                                print("\nPlease enter a valid move")
                                 return False
                         else:
                             return True
@@ -175,10 +174,8 @@ def move_checker(move: str) -> bool:
                                     board.board = list(new_board)
                                     return True
                                 else:
-                                    print("\nPlease enter a valid move")
                                     return False
                             else:
-                                print("\nPlease enter a valid move")
                                 return False
                         elif whos_move == -1:
                             if board.board[end_array_location - 8] == "P":
@@ -187,12 +184,10 @@ def move_checker(move: str) -> bool:
                                     board.board = list(new_board)
                                     return True
                                 else:
-                                    print("\nPlease enter a valid move")
+                                    return False
                             else:
-                                print("\nPlease enter a valid move")
                                 return False
                     else:
-                        print("\nPlease enter a valid move")
                         return False
 
         def rook_check() -> bool:
@@ -225,8 +220,7 @@ def move_checker(move: str) -> bool:
                                 else:
                                     break
                         else:
-                            break 
-            print("\nPlease enter a valid move")
+                            break
             return False
 
         def bishop_check() -> bool:
@@ -259,8 +253,7 @@ def move_checker(move: str) -> bool:
                                 else:
                                     break
                         else:
-                            break 
-            print("\nPlease enter a valid move")
+                            break
             return False
 
         def king_check() -> bool:
@@ -285,9 +278,7 @@ def move_checker(move: str) -> bool:
                             if piece_to_capture.isupper():
                                     return True
                         else:
-                            print("\nPlease enter a valid move")
                             return False
-            print("\nPlease enter a valid move")
             return False
 
         def knight_check() -> bool:            
@@ -311,9 +302,7 @@ def move_checker(move: str) -> bool:
                             if piece_to_capture.isupper():
                                 return True
                         else:
-                            print("\nPlease enter a valid move")
                             return False
-            print("\nPlease enter a valid move")
             return False
 
         def queen_check() -> bool:
@@ -347,7 +336,6 @@ def move_checker(move: str) -> bool:
                                     break
                         else:
                             break 
-            print("\nPlease enter a valid move")
             return False
 
         piece_lower = piece_moved.casefold()
@@ -398,6 +386,7 @@ def move_checker(move: str) -> bool:
         modify_board(array_values)
         return True
     else:
+        print("\nPlease enter a valid move")
         return False
 
 def modify_board(array_values: tuple) -> None:

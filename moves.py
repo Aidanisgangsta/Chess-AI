@@ -94,8 +94,7 @@ def move_checker(move: str, boardstate: tuple) -> bool:
 
         start_piece = boardstate[array_values[0]]
 
-        if start_piece == ".": 
-            print("\nPlease enter a location which is not blank")
+        if start_piece == ".":
             return True
         else:
             return False
@@ -111,13 +110,11 @@ def move_checker(move: str, boardstate: tuple) -> bool:
             if piece.isupper():
                 return True
             else:
-                print("\nPlease enter a valid move")
                 return False
         elif whos_move == -1:
             if piece.islower():
                 return True
             else:
-                print("\nPlease enter a valid move")
                 return False
 
     def legit_move_checker() -> bool:
@@ -388,9 +385,8 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         modify_board(array_values)
         return True
     else:
-        print("\nPlease enter a valid move")
         return False
-
+            
 def check_checker(boardstate: tuple) -> bool:
     """
     A function that takes in a board state and checks if the player is in check.\n

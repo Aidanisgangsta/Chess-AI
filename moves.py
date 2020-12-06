@@ -337,35 +337,17 @@ def move_checker(move: str, boardstate: tuple) -> bool:
 
         piece_lower = piece_moved.casefold()
         if piece_lower == "p":
-            if pawn_check():
-                return True
-            else: 
-                return False
+            return pawn_check()
         elif piece_lower == "r":
-            if rook_check():
-                return True
-            else: 
-                return False
+            return rook_check()
         elif piece_lower == "b":
-            if bishop_check():
-                return True
-            else: 
-                return False
+            return bishop_check()
         elif piece_lower == "k":
-            if king_check():
-                return True
-            else:
-                return False
+            return king_check()
         elif piece_lower == "n":
-            if knight_check():
-                return True
-            else:
-                return False
+            return knight_check()
         elif piece_lower == "q":
-            if queen_check():
-                return True
-            else:
-                return False
+            return queen_check()
     
     #Gets a tuple containing the array values for the start square and end square for the move
     array_values = square_finder()

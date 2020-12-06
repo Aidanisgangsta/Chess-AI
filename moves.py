@@ -400,6 +400,29 @@ def check_checker(boardstate: tuple) -> bool:
      - If the king is under attack, it will return a True value otherwise it wil return False.
     """
 
+    def notation_creator():
+        """
+        A function that creates the notation from a piece location and king location.\n
+
+        Used when checking if a move places the king in check.
+        """
+
+        #Finds the first 2 characters of a move
+        xcoord = i % 8 + 1
+        ycoord = 8 - ((i - xcoord + 1)/ 8)
+
+        startchars = f"{board.FILE_LETTERS[xcoord - 1]}{int(ycoord)}"
+
+        #Finds the last 2 characters of the move
+        xcoord = king_location % 8 + 1
+        ycoord =  8 - ((king_location - xcoord + 1)/ 8)
+
+        endchars = f"{board.FILE_LETTERS[xcoord - 1]}{int(ycoord)}"
+        
+        move = startchars + endchars
+
+        return move
+
     #Finds location of current colours king 
     for i in range(len(boardstate)):
         if whos_move == 1:

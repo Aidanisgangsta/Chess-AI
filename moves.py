@@ -377,7 +377,7 @@ def check_checker(boardstate: tuple) -> bool:
      - If the king is under attack, it will return a True value otherwise it wil return False.
     """
 
-    def notation_creator():
+    def notation_creator(king_location: int):
         """
         A function that creates the notation from a piece location and king location.\n
 
@@ -399,8 +399,11 @@ def check_checker(boardstate: tuple) -> bool:
         move = startchars + endchars
 
         return move
-
+    
+    global whos_move
+    
     #Finds location of current colours king 
+    king_location = -1
     for i in range(len(boardstate)):
         if whos_move == 1:
             if boardstate[i] == "K":
@@ -415,16 +418,20 @@ def check_checker(boardstate: tuple) -> bool:
         #Checks if it is whites move
         if whos_move == 1:
             if boardstate[i].islower():
-                move = notation_creator()
+                move = notation_creator(king_location)
                 #Checks if the move is a legit move
+                whos_move *= -1
                 move_check = move_checker(move, boardstate)
+                whos_move *= -1
                 if move_check:
                     return True
         elif whos_move == -1:
             if boardstate[i].isupper():
-                move = notation_creator()
+                move = notation_creator(king_location)
                 #Checks if the move is a legit move
+                whos_move *= -1
                 move_check = move_checker(move, boardstate)
+                whos_move *= -1
                 if move_check:
                     return True
     return False          

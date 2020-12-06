@@ -338,14 +338,14 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         piece_lower = piece_moved.casefold()
 
         PieceFuncDict = {
-            "p": pawn_check(), 
-            "r": rook_check(), 
-            "b": bishop_check(), 
-            "k": king_check(), 
-            "n": knight_check(), 
-            "q": queen_check()}
+            "p": pawn_check, 
+            "r": rook_check, 
+            "b": bishop_check, 
+            "k": king_check,
+            "n": knight_check, 
+            "q": queen_check}
 
-        PieceFuncDict.get(piece_lower)
+        return PieceFuncDict[piece_lower]()
     
     #Gets a tuple containing the array values for the start square and end square for the move
     array_values = square_finder()

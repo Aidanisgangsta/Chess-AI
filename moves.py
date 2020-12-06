@@ -170,7 +170,6 @@ def move_checker(move: str, boardstate: tuple) -> bool:
                             if boardstate[end_array_location + 8] == "p":
                                 if board_history[-1][end_array_location - 8] == "p" and board_history[-1][end_array_location + 8] == ".":
                                     new_board[end_array_location + 8] = "."
-                                    board.board = list(new_board)
                                     return True
                                 else:
                                     return False
@@ -180,7 +179,6 @@ def move_checker(move: str, boardstate: tuple) -> bool:
                             if boardstate[end_array_location - 8] == "P":
                                 if board_history[-1][end_array_location - 8] == "p" and board_history[-1][end_array_location + 8] == ".":
                                     new_board[end_array_location - 8] = "."
-                                    board.board = list(new_board)
                                     return True
                                 else:
                                     return False

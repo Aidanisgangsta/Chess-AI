@@ -436,8 +436,9 @@ def check_checker(boardstate: tuple) -> bool:
             if boardstate[i].islower():
                 move = notation_creator()
                 #Checks if the move is a legit move
-                if move_checker(move):
-                    return False
+                move_check = move_checker(move, boardstate)
+                if move_check:
+                    return True
         elif whos_move == -1:
             if boardstate[i].isupper():
                 move = notation_creator()

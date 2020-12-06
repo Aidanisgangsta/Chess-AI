@@ -392,7 +392,7 @@ def check_checker(boardstate: tuple) -> bool:
     A function that takes in a board state and checks if the player is in check.\n
 
      - Scans over every square in the board and sees if it is occupyed by an opponent piece.
-     - If it is, it will see if that piece is attacking the players queen.
+     - If it is, it will see if that piece is attacking the players king.
      - If the king is under attack, it will return a True value otherwise it wil return False.
     """
 

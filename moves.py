@@ -380,8 +380,11 @@ def move_checker(move: str, boardstate: tuple) -> bool:
 
     #Checks if the move entered is a valid move by that piece
     if legit_move_checker():
-        modify_board(array_values)
-        return True
+        #Checks if the players king is in check
+        if modify_board(array_values) == False:
+            return False
+        else:
+            return True
     else:
         return False
             

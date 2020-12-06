@@ -40,7 +40,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_checker(move)
+                valid_move = move_checker(move, board.board)
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     board.printboard()
@@ -55,7 +55,7 @@ def make_move() -> None:
         else:
             print("\nPlease enter a move in the correct format (e.g. a1c3)")
 
-def move_checker(move: str) -> bool:
+def move_checker(move: str, boardstate: tuple) -> bool:
     """
     A function that checks if the entered is a valid move.\n
 
@@ -92,7 +92,7 @@ def move_checker(move: str) -> bool:
         Returns True or False depending on whether or not the start square is blank.
         """
 
-        start_piece = board.board[array_values[0]]
+        start_piece = boardstate[array_values[0]]
 
         if start_piece == ".": 
             print("\nPlease enter a location which is not blank")
@@ -105,7 +105,7 @@ def move_checker(move: str) -> bool:
         A function which checks if the piece to move is the correct colour.
         """
 
-        piece = board.board[array_values[0]]
+        piece = boardstate[array_values[0]]
 
         if whos_move == 1:
             if piece.isupper():
@@ -130,7 +130,7 @@ def move_checker(move: str) -> bool:
         #Gets the array location of the end square of the piece
         end_array_location = array_values[1]
         #Gets the piece you selected and converts it to lowercase
-        piece_moved = board.board[array_location]
+        piece_moved = boardstate[array_location]
         #Finds the tuple of available moves from the dictionary of moves
         available_moves = moves.get(piece_moved.casefold())
         #Total distance moved by the piece in the array
@@ -146,11 +146,11 @@ def move_checker(move: str) -> bool:
                 #Checks if the start location + the change is direction by the move in the array = end location
                 if array_location + (move * whos_move) == end_array_location:
                     #Checks if the move is a move straight forward and the squares are clear
-                    if (move * whos_move) % 8 == 0 and board.board[end_array_location] == ".":
+                    if (move * whos_move) % 8 == 0 and boardstate[end_array_location] == ".":
                         #Checks if the move is 2 squares forward
                         if move == -16:
                             #Checks the square 1 square ahead of the pawn
-                            if board.board[array_location + (whos_move * -8)] == ".":
+                            if boardstate[array_location + (whos_move * -8)] == ".":
                                 return True
                             else:
                                 return False
@@ -158,7 +158,7 @@ def move_checker(move: str) -> bool:
                             return True
                     else:
                         #Checks if the move is a possible capture
-                        piece_to_capture = board.board[end_array_location]
+                        piece_to_capture = boardstate[end_array_location]
                         if whos_move == 1:
                             if piece_to_capture.islower():
                                 return True
@@ -166,11 +166,11 @@ def move_checker(move: str) -> bool:
                             if piece_to_capture.isupper():
                                 return True
 
-                    new_board = list(board.board)
+                    new_board = list(boardstate)
                     #Checks for en passant capture
                     if piece_to_capture == ".":
                         if whos_move == 1:
-                            if board.board[end_array_location + 8] == "p":
+                            if boardstate[end_array_location + 8] == "p":
                                 if board_history[-1][end_array_location - 8] == "p" and board_history[-1][end_array_location + 8] == ".":
                                     new_board[end_array_location + 8] = "."
                                     board.board = list(new_board)
@@ -180,7 +180,7 @@ def move_checker(move: str) -> bool:
                             else:
                                 return False
                         elif whos_move == -1:
-                            if board.board[end_array_location - 8] == "P":
+                            if boardstate[end_array_location - 8] == "P":
                                 if board_history[-1][end_array_location - 8] == "p" and board_history[-1][end_array_location + 8] == ".":
                                     new_board[end_array_location - 8] = "."
                                     board.board = list(new_board)
@@ -204,19 +204,19 @@ def move_checker(move: str) -> bool:
                     #Checks to see if the index is within the tuple
                     if (array_location + (i * move)) < 64 and (array_location + (i * move)) > -1:
                         #Checks if every square along the row is blank or if the end square can be captured
-                        if board.board[array_location + (i * move)] == ".":
+                        if boardstate[array_location + (i * move)] == ".":
                             #Checks if the start location + the change is direction by the move in the array = end location
                             if i * move == distance_moved:
                                 return True
                         #Checks if the move is a possible capture
                         elif whos_move == 1:
-                            if board.board[array_location + (i * move)].islower():
+                            if boardstate[array_location + (i * move)].islower():
                                 if i * move == distance_moved:
                                     return True
                                 else:
                                     break
                         elif whos_move == -1:
-                            if board.board[array_location + (i * move)].isupper():
+                            if boardstate[array_location + (i * move)].isupper():
                                 if i * move == distance_moved:
                                     return True
                                 else:
@@ -237,19 +237,19 @@ def move_checker(move: str) -> bool:
                     #Checks to see if the index is within the tuple
                     if (array_location + (i * move)) < 64 and (array_location + (i * move)) > -1:
                         #Checks if every square along the diagonal is blank or if the end square can be captured
-                        if board.board[array_location + (i * move)] == ".":
+                        if boardstate[array_location + (i * move)] == ".":
                             #Checks if the start location + the change is direction by the move in the array = end location
                             if i * move == distance_moved:
                                 return True
                         #Checks if the move is a possible capture
                         elif whos_move == 1:
-                            if board.board[array_location + (i * move)].islower():
+                            if boardstate[array_location + (i * move)].islower():
                                 if i * move == distance_moved:
                                     return True
                                 else:
                                     break
                         elif whos_move == -1:
-                            if board.board[array_location + (i * move)].isupper():
+                            if boardstate[array_location + (i * move)].isupper():
                                 if i * move == distance_moved:
                                     return True
                                 else:
@@ -268,11 +268,11 @@ def move_checker(move: str) -> bool:
                 #Checks if the start location + the change is direction by the move in the array = end location
                 if array_location + move == end_array_location:
                     #Checks if the move lands on a clear square
-                    if board.board[end_array_location] == ".":
+                    if boardstate[end_array_location] == ".":
                         return True
                     else:
                         #Checks if the move is a possible capture
-                        piece_to_capture = board.board[end_array_location]
+                        piece_to_capture = boardstate[end_array_location]
                         if whos_move == 1:
                             if piece_to_capture.islower():
                                 return True
@@ -293,10 +293,10 @@ def move_checker(move: str) -> bool:
                 #Checks if the start location + the change in location by the move = end location
                 if array_location + move == end_array_location:
                     #Checks if the move lands on a clear square
-                    if board.board[end_array_location] == ".":
+                    if boardstate[end_array_location] == ".":
                         return True
                     else:
-                        piece_to_capture = board.board[end_array_location]
+                        piece_to_capture = boardstate[end_array_location]
                         if whos_move == 1:
                             if piece_to_capture.islower():
                                 return True
@@ -319,19 +319,19 @@ def move_checker(move: str) -> bool:
                     #Checks to see if the index is within the tuple
                     if (array_location + (i * move)) < 64 and (array_location + (i * move)) > -1:
                         #Checks if every square along the row is blank or if the end square can be captured
-                        if board.board[array_location + (i * move)] == ".":
+                        if boardstate[array_location + (i * move)] == ".":
                             #Checks if the start location + the change is direction by the move in the array = end location
                             if i * move == distance_moved:
                                 return True
                         #Checks if the move is a possible capture
                         elif whos_move == 1:
-                            if board.board[array_location + (i * move)].islower():
+                            if boardstate[array_location + (i * move)].islower():
                                 if i * move == distance_moved:
                                     return True
                                 else:
                                     break
                         elif whos_move == -1:
-                            if board.board[array_location + (i * move)].isupper():
+                            if boardstate[array_location + (i * move)].isupper():
                                 if i * move == distance_moved:
                                     return True
                                 else:
@@ -440,7 +440,6 @@ def modify_board(array_values: tuple) -> None:
 
     #Find the piece that was moved
     piece_moved = board.board[array_values[0]]
-    check_checker(board.board)
     #Creates new board object
     new_board = list(board.board)
     #Replaces pieces old location with a blank square

@@ -423,9 +423,10 @@ def check_checker(boardstate: tuple) -> bool:
             if boardstate[i].isupper():
                 move = notation_creator()
                 #Checks if the move is a legit move
-                if move_checker(move):
-                    return False
-    return True          
+                move_check = move_checker(move, boardstate)
+                if move_check:
+                    return True
+    return False          
 
 def modify_board(array_values: tuple) -> None:
     """
@@ -448,8 +449,8 @@ def modify_board(array_values: tuple) -> None:
     new_board[array_values[1]] = piece_moved
 
     #Checks if the new board has the players king in check
-    if check_checker(new_board):
-        print('1')
+    print(check_checker(tuple(new_board)))
+    if check_checker(tuple(new_board)):
         return False
 
     #Appends the old board to a list of all the board positions

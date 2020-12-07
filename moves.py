@@ -55,16 +55,6 @@ def make_move() -> None:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")
         else:
             print("\nPlease enter a move in the correct format (e.g. a1c3)")
-
-def move_checker(move: str, boardstate: tuple) -> bool:
-    """
-    A function that checks if the entered is a valid move.\n
-
-     - Finds the location in the board array for the start position and end position of the move.
-     - Checks if the starting location is a piece you can move.
-     - Finds the piece that you moved.
-     - Checks if that piece makes a legal move (Does not check for checks, that is done later).
-    """
             
 def check_checker(boardstate: tuple) -> bool:
     """

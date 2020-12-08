@@ -176,7 +176,6 @@ def colour_checker() -> bool:
         else:
             return False
 
-
 def modify_board(array_values: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n
@@ -205,3 +204,6 @@ def modify_board(array_values: tuple) -> None:
     #Appends the old board to a list of all the board positions
     board_history.append(board.board)
     board.board = tuple(new_board)
+
+if __name__ == "__main__":
+    pass

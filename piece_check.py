@@ -226,21 +226,18 @@ PieceFuncDict = {
     "n": knight_check, 
     "q": queen_check}
 
-return PieceFuncDict[piece_lower]()
-
-#Gets a tuple containing the array values for the start square and end square for the move
-array_values = square_finder()
+PieceFuncDict[piece_lower]()
 
 #Finds out if the start square entered is blank
-if blank_checker():
+if moves.blank_checker():
     return False
 
 #Check if the piece entered is the correct colour
-if colour_checker() == False:
+if moves.colour_checker() == False:
     return False
 
 #Checks if the move entered is a valid move by that piece
-if legit_move_checker():
+if moves.legit_move_checker():
     #Checks if the players king is in check
     if moves.modify_board(array_values) == False:
         return False
@@ -250,3 +247,8 @@ else:
     return False
 
 def main():
+    #Gets a tuple containing the array values for the start square and end square for the move
+    array_values = moves.square_finder()
+
+if __name__ == '__main__':
+    main()

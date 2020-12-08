@@ -42,7 +42,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_checker(move, board.board)
+                valid_move = piece_check.move_checker(move, board.board)
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     board.printboard()
@@ -110,7 +110,7 @@ def check_checker(boardstate: tuple) -> bool:
                 move = notation_creator(king_location)
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(move, boardstate)
+                move_check = piece_check.move_checker(move, boardstate)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -119,7 +119,7 @@ def check_checker(boardstate: tuple) -> bool:
                 move = notation_creator(king_location)
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(move, boardstate)
+                move_check = piece_check.move_checker(move, boardstate)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -163,14 +163,14 @@ def colour_checker() -> bool:
     A function which checks if the piece to move is the correct colour.
     """
 
-    piece = moves.boardstate[array_values[0]]
+    piece = moves.boardstate[piece_check.array_values[0]]
 
-    if moves.whos_move == 1:
+    if whos_move == 1:
         if piece.isupper():
             return True
         else:
             return False
-    elif moves.whos_move == -1:
+    elif whos_move == -1:
         if piece.islower():
             return True
         else:
@@ -187,6 +187,17 @@ def modify_board(array_values: tuple) -> None:
      - The board is set to = the new board as a tuple.
     """
 
+    #Finds out if the start square entered is blank
+    if blank_checker():
+        return False
+
+    #Check if the piece entered is the correct colour
+    if colour_checker() == False:
+        return False
+
+    if piece_check.move_checker(move, board.board):
+        pass
+
     #Find the piece that was moved
     piece_moved = board.board[array_values[0]]
     #Creates new board object
@@ -197,13 +208,9 @@ def modify_board(array_values: tuple) -> None:
     new_board[array_values[1]] = piece_moved
 
     #Checks if the new board has the players king in check
-    print(check_checker(tuple(new_board)))
     if check_checker(tuple(new_board)):
         return False
 
     #Appends the old board to a list of all the board positions
     board_history.append(board.board)
     board.board = tuple(new_board)
-
-if __name__ == "__main__":
-    pass

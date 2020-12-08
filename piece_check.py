@@ -1,6 +1,8 @@
 import moves
 import board
 
+#Gets a tuple containing the array values for the start square and end square for the move
+array_values = moves.square_finder()
 #Gets the location in the array of the starting position of the piece
 array_location = array_values[0]
 #Gets the array location of the end square of the piece
@@ -216,10 +218,11 @@ def queen_check() -> bool:
                     break 
     return False
 
-def move_checker():
+def move_checker(move: str, boardstate: tuple) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
     """
+    
     piece_lower = piece_moved.casefold()
 
     PieceFuncDict = {
@@ -230,29 +233,18 @@ def move_checker():
         "n": knight_check, 
         "q": queen_check}
 
-    PieceFuncDict[piece_lower]()
-
-#Finds out if the start square entered is blank
-if moves.blank_checker():
-    return False
-
-#Check if the piece entered is the correct colour
-if moves.colour_checker() == False:
-    return False
-
-#Checks if the move entered is a valid move by that piece
-if moves.legit_move_checker():
-    #Checks if the players king is in check
-    if moves.modify_board(array_values) == False:
-        return False
-    else:
-        return True
-else:
-    return False
+    return PieceFuncDict[piece_lower](move, boardstate)
 
 def main():
-    #Gets a tuple containing the array values for the start square and end square for the move
-    array_values = moves.square_finder()
+    #Checks if the move entered is a valid move by that piece
+    if moves.legit_move_checker():
+        #Checks if the players king is in check
+        if moves.modify_board(array_values) == False:
+            return False
+        else:
+            return True
+    else:
+        return False
 
 if __name__ == '__main__':
     main()

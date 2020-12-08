@@ -1,57 +1,6 @@
 import moves
 import board
 
-start_square = moves.move[0:2]
-end_square = moves.move[2:4]
-
-def square_finder() -> tuple:
-    """
-    A function that finds the value in the board array of the start and end squares for a move.\n
-
-    Returns a tuple containing the array values for the start square and end square for the move.
-    """
-
-    #Finds the array position of the starting square
-    start_square_letter_value = board.FILE_LETTERS.index(start_square[0])
-    start_square_array_value = 8 * (8 - int(start_square[1])) + start_square_letter_value
-
-    #Finds the array position of the ending square
-    end_square_letter_value = board.FILE_LETTERS.index(end_square[0])
-    end_square_array_value = 8 * (8 - int(end_square[1])) + end_square_letter_value
-
-    return start_square_array_value, end_square_array_value
-
-def blank_checker() -> bool:
-    """
-    A function that checks whether the enter start square is blank or not.\n
-
-    Returns True or False depending on whether or not the start square is blank.
-    """
-
-    start_piece = moves.boardstate
-    if start_piece == ".":
-        return True
-    else:
-        return False
-
-def colour_checker() -> bool:
-    """
-    A function which checks if the piece to move is the correct colour.
-    """
-
-    piece = moves.boardstate[array_values[0]]
-
-    if moves.whos_move == 1:
-        if piece.isupper():
-            return True
-        else:
-            return False
-    elif moves.whos_move == -1:
-        if piece.islower():
-            return True
-        else:
-            return False
-
 def legit_move_checker() -> bool:
     """
     A function that finds out if a move entered is a legitimate move according to the piece.\n
@@ -304,3 +253,5 @@ if legit_move_checker():
         return True
 else:
     return False
+
+def main():

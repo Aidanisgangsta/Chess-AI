@@ -216,17 +216,21 @@ def queen_check() -> bool:
                     break 
     return False
 
-piece_lower = piece_moved.casefold()
+def move_checker():
+    """
+    A function that checks if the piece moved has made a legal move or not.
+    """
+    piece_lower = piece_moved.casefold()
 
-PieceFuncDict = {
-    "p": pawn_check, 
-    "r": rook_check, 
-    "b": bishop_check, 
-    "k": king_check,
-    "n": knight_check, 
-    "q": queen_check}
+    PieceFuncDict = {
+        "p": pawn_check, 
+        "r": rook_check, 
+        "b": bishop_check, 
+        "k": king_check,
+        "n": knight_check, 
+        "q": queen_check}
 
-PieceFuncDict[piece_lower]()
+    PieceFuncDict[piece_lower]()
 
 #Finds out if the start square entered is blank
 if moves.blank_checker():

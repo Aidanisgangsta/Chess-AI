@@ -176,7 +176,7 @@ def colour_checker() -> bool:
         else:
             return False
 
-def modify_board(array_values: tuple) -> None:
+def modify_board(piece_moved, new_board: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n
 

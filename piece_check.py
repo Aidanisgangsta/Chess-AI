@@ -1,12 +1,8 @@
 import moves
 import board
 
-#Gets a tuple containing the array values for the start square and end square for the move
-array_values = moves.square_finder()
-#Gets the location in the array of the starting position of the piece
-array_location = array_values[0]
-#Gets the array location of the end square of the piece
-end_array_location = array_values[1]
+#Gets the array values for the start square and end square for the move
+array_location, end_array_location = square_finder()
 #Gets the piece you selected and converts it to lowercase
 piece_moved = moves.boardstate[array_location]
 #Finds the tuple of available moves from the dictionary of moves
@@ -239,7 +235,7 @@ def main():
     #Checks if the move entered is a valid move by that piece
     if moves.legit_move_checker():
         #Checks if the players king is in check
-        if moves.modify_board(array_values) == False:
+        if moves.modify_board(array_location, end_array_location) == False:
             return False
         else:
             return True

@@ -145,6 +145,9 @@ def square_finder() -> tuple:
 
     return start_square_array_value, end_square_array_value
 
+#Gets the array values for the start square and end square for the move
+array_location, end_array_location = square_finder()
+
 def blank_checker() -> bool:
     """
     A function that checks whether the enter start square is blank or not.\n
@@ -163,7 +166,7 @@ def colour_checker() -> bool:
     A function which checks if the piece to move is the correct colour.
     """
 
-    piece = moves.boardstate[piece_check.array_values[0]]
+    piece = board.chessboard[array_location]
 
     if whos_move == 1:
         if piece.isupper():
@@ -216,13 +219,13 @@ def modify_board(piece_moved, new_board: tuple) -> None:
         pass
 
     #Find the piece that was moved
-    piece_moved = board.board[array_values[0]]
+    piece_moved = board.board[array_location]
     #Creates new board object
     new_board = list(board.board)
     #Replaces pieces old location with a blank square
-    new_board[array_values[0]] = "."
+    new_board[array_location] = "."
     #Replaces the old square with the new piece
-    new_board[array_values[1]] = piece_moved
+    new_board[end_array_location] = piece_moved
 
     #Checks if the new board has the players king in check
     if check_checker(tuple(new_board)):

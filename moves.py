@@ -1,5 +1,5 @@
 import board
-import piece_check
+import piece_check as pc
 
 import re
 

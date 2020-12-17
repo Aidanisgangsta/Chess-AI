@@ -194,6 +194,22 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         "n": pc.knight_check, 
         "q": pc.queen_check}
 
+    if PieceFuncDict[piece_lower](move, boardstate):
+        #Finds out if the start square entered is blank
+        if blank_checker():
+            return False
+
+        #Check if the piece entered is the correct colour
+        if colour_checker() == False:
+            return False
+        
+        #Checks if the new board has the players king in check
+        if check_checker(tuple(new_board)):
+            return False
+    else:
+        return False
+    
+
     return PieceFuncDict[piece_lower](move, boardstate)
 
 def modify_board(piece_moved, new_board: tuple) -> None:
@@ -207,17 +223,6 @@ def modify_board(piece_moved, new_board: tuple) -> None:
      - The board is set to = the new board as a tuple.
     """
 
-    #Finds out if the start square entered is blank
-    if blank_checker():
-        return False
-
-    #Check if the piece entered is the correct colour
-    if colour_checker() == False:
-        return False
-
-    if move_checker(move, board.board):
-        pass
-
     #Find the piece that was moved
     piece_moved = board.board[array_location]
     #Creates new board object
@@ -226,10 +231,6 @@ def modify_board(piece_moved, new_board: tuple) -> None:
     new_board[array_location] = "."
     #Replaces the old square with the new piece
     new_board[end_array_location] = piece_moved
-
-    #Checks if the new board has the players king in check
-    if check_checker(tuple(new_board)):
-        return False
 
     #Appends the old board to a list of all the board positions
     board_history.append(board.board)

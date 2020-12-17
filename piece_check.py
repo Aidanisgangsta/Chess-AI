@@ -213,17 +213,3 @@ def queen_check() -> bool:
                 else:
                     break 
     return False
-
-def main():
-    #Checks if the move entered is a valid move by that piece
-    if moves.legit_move_checker():
-        #Checks if the players king is in check
-        if moves.modify_board(array_location, end_array_location) == False:
-            return False
-        else:
-            return True
-    else:
-        return False
-
-if __name__ == '__main__':
-    main()

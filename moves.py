@@ -176,6 +176,23 @@ def colour_checker() -> bool:
         else:
             return False
 
+def move_checker(move: str, boardstate: tuple) -> bool:
+    """
+    A function that checks if the piece moved has made a legal move or not.
+    """
+    
+    piece_lower = piece_moved.casefold()
+
+    PieceFuncDict = {
+        "p": pc.pawn_check, 
+        "r": pc.rook_check, 
+        "b": pc.bishop_check, 
+        "k": pc.king_check,
+        "n": pc.knight_check, 
+        "q": pc.queen_check}
+
+    return PieceFuncDict[piece_lower](move, boardstate)
+
 def modify_board(piece_moved, new_board: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n

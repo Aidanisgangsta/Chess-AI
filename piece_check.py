@@ -214,23 +214,6 @@ def queen_check() -> bool:
                     break 
     return False
 
-def move_checker(move: str, boardstate: tuple) -> bool:
-    """
-    A function that checks if the piece moved has made a legal move or not.
-    """
-    
-    piece_lower = piece_moved.casefold()
-
-    PieceFuncDict = {
-        "p": pawn_check, 
-        "r": rook_check, 
-        "b": bishop_check, 
-        "k": king_check,
-        "n": knight_check, 
-        "q": queen_check}
-
-    return PieceFuncDict[piece_lower](move, boardstate)
-
 def main():
     #Checks if the move entered is a valid move by that piece
     if moves.legit_move_checker():

@@ -2,11 +2,11 @@ import moves
 import board
 
 #Gets the array values for the start square and end square for the move
-array_location, end_array_location = square_finder()
+array_location, end_array_location = moves.square_finder()
 #Gets the piece you selected and converts it to lowercase
 piece_moved = moves.boardstate[array_location]
 #Finds the tuple of available moves from the dictionary of moves
-available_moves = moves.get(piece_moved.casefold())
+available_moves = moves.piece_moves.get(piece_moved.casefold())
 #Total distance moved by the piece in the array
 distance_moved = end_array_location - array_location
 

@@ -155,7 +155,7 @@ def blank_checker() -> bool:
     Returns True or False depending on whether or not the start square is blank.
     """
 
-    start_piece = moves.boardstate
+    start_piece = board.chessboard[start_square]
     if start_piece == ".":
         return True
     else:

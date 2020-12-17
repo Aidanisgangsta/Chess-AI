@@ -1,6 +1,4 @@
-import moves
-
-import math
+from math import floor
 
 BOARDSIZE = 8
 
@@ -44,7 +42,7 @@ def printboard():
 
     square_num = 0
     for square in chessboard:        
-        current_row = BOARDSIZE - math.floor(square_num/BOARDSIZE)
+        current_row = BOARDSIZE - floor(square_num/BOARDSIZE)
         #Prints the row number for the first row
         if square_num == 0:
             print(row_num, end=' ')

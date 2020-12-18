@@ -2,11 +2,11 @@ import moves as m
 import board
 
 #Gets the piece you selected and converts it to lowercase
-piece_moved = m.boardstate[array_location]
+piece_moved = board.chessboard[m.array_location]
 #Finds the tuple of available moves from the dictionary of moves
 available_moves = m.piece_m.get(piece_moved.casefold())
 #Total distance moved by the piece in the array
-distance_moved = end_array_location - array_location
+distance_moved = m.end_array_location - m.array_location
 
 def pawn_check() -> bool:
     """

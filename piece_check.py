@@ -44,18 +44,18 @@ def pawn_check() -> bool:
             #Checks for en passant capture
             if piece_to_capture == ".":
                 if m.whos_move == 1:
-                    if m.boardstate[end_array_location + 8] == "p":
-                        if m.board_history[-1][end_array_location - 8] == "p" and m.board_history[-1][end_array_location + 8] == ".":
-                            new_board[end_array_location + 8] = "."
+                    if m.boardstate[m.end_array_location + 8] == "p":
+                        if m.board_history[-1][m.end_array_location - 8] == "p" and m.board_history[-1][m.end_array_location + 8] == ".":
+                            new_board[m.end_array_location + 8] = "."
                             return True
                         else:
                             return False
                     else:
                         return False
                 elif m.whos_move == -1:
-                    if m.boardstate[end_array_location - 8] == "P":
-                        if m.board_history[-1][end_array_location - 8] == "p" and m.board_history[-1][end_array_location + 8] == ".":
-                            new_board[end_array_location - 8] = "."
+                    if m.boardstate[m.end_array_location - 8] == "P":
+                        if m.board_history[-1][m.end_array_location - 8] == "p" and m.board_history[-1][m.end_array_location + 8] == ".":
+                            new_board[m.end_array_location - 8] = "."
                             return True
                         else:
                             return False

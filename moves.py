@@ -202,7 +202,7 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         "n": pc.knight_check, 
         "q": pc.queen_check}
 
-    if PieceFuncDict[piece_lower](move, boardstate):
+    if PieceFuncDict[piece_lower]():
         #Finds out if the start square entered is blank
         if blank_checker(start_square):
             return False

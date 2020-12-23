@@ -211,6 +211,8 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         if colour_checker(array_location) == False:
             return False
         
+        #! REMOVE ONCE FIXED 
+        new_board = ["."]
         #Checks if the new board has the players king in check
         if check_checker(tuple(new_board)):
             return False

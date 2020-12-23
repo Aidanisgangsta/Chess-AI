@@ -212,6 +212,20 @@ def move_checker(move: str, boardstate: tuple) -> bool:
 
     return PieceFuncDict[piece_lower](move, boardstate)
 
+def threefold_check() -> bool:
+    """
+    A function that checks if a board state has occured three times.\n
+
+    If it has it will return true which will stop the game and announce a draw.
+    If it returns false the game will continue as normal.
+    """
+
+    for board in board_history:
+        occurances = board_history.count(board)
+        if occurances == 3:
+            return True
+        else:
+            return False
 def modify_board(piece_moved, new_board: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n

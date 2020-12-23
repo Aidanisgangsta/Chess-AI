@@ -7,7 +7,7 @@ def pawn_check() -> bool:
     """
 
     #Iterates over every possible pawn move
-    for move in available_moves:
+    for move in m.available_moves:
         #Checks if the start location + the change is direction by the move in the array = end location
         if m.array_location + (move * m.whos_move) == m.end_array_location:
             #Checks if the move is a move straight forward and the squares are clear
@@ -61,7 +61,7 @@ def rook_check() -> bool:
     """
 
     #Iterates over every possible rook move
-    for move in available_moves:
+    for move in m.available_moves:
         #Iterates over all the rows the rook can possibly move on
         for i in range(1, board.BOARDSIZE):
             #Checks to see if the index is within the tuple
@@ -69,18 +69,18 @@ def rook_check() -> bool:
                 #Checks if every square along the row is blank or if the end square can be captured
                 if m.boardstate[m.array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
-                    if i * move == distance_moved:
+                    if i * move == m.distance_moved:
                         return True
                 #Checks if the move is a possible capture
                 elif m.whos_move == 1:
                     if m.boardstate[m.array_location + (i * move)].islower():
-                        if i * move == distance_moved:
+                        if i * move == m.distance_moved:
                             return True
                         else:
                             break
                 elif m.whos_move == -1:
                     if m.boardstate[m.array_location + (i * move)].isupper():
-                        if i * move == distance_moved:
+                        if i * move == m.distance_moved:
                             return True
                         else:
                             break
@@ -94,7 +94,7 @@ def bishop_check() -> bool:
     """
 
     #Iterates over every possible bishop move
-    for move in available_moves:
+    for move in m.available_moves:
         #Iterates over all the diagonals the bishop can possibly move on
         for i in range(1, board.BOARDSIZE):
             #Checks to see if the index is within the tuple
@@ -102,18 +102,18 @@ def bishop_check() -> bool:
                 #Checks if every square along the diagonal is blank or if the end square can be captured
                 if m.boardstate[m.array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
-                    if i * move == distance_moved:
+                    if i * move == m.distance_moved:
                         return True
                 #Checks if the move is a possible capture
                 elif m.whos_move == 1:
                     if m.boardstate[m.array_location + (i * move)].islower():
-                        if i * move == distance_moved:
+                        if i * move == m.distance_moved:
                             return True
                         else:
                             break
                 elif m.whos_move == -1:
                     if m.boardstate[m.array_location + (i * move)].isupper():
-                        if i * move == distance_moved:
+                        if i * move == m.distance_moved:
                             return True
                         else:
                             break
@@ -127,7 +127,7 @@ def king_check() -> bool:
     """
 
     #Iterates over every possible king move
-    for move in available_moves:
+    for move in m.available_moves:
         #Checks if the start location + the change is direction by the move in the array = end location
         if m.array_location + move == m.end_array_location:
             #Checks if the move lands on a clear square
@@ -152,7 +152,7 @@ def knight_check() -> bool:
     """
 
     #Iterates over all possible knight moves
-    for move in available_moves:
+    for move in m.available_moves:
         #Checks if the start location + the change in location by the move = end location
         if m.array_location + move == m.end_array_location:
             #Checks if the move lands on a clear square
@@ -176,7 +176,7 @@ def queen_check() -> bool:
     """
 
     #Iterates over every possible queen move
-    for move in available_moves:
+    for move in m.available_moves:
         #Iterates over all the diagonals and rows the queen can possibly move on
         for i in range(1, board.BOARDSIZE):
             #Checks to see if the index is within the tuple
@@ -184,18 +184,18 @@ def queen_check() -> bool:
                 #Checks if every square along the row is blank or if the end square can be captured
                 if m.boardstate[m.array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
-                    if i * move == distance_moved:
+                    if i * move == m.distance_moved:
                         return True
                 #Checks if the move is a possible capture
                 elif m.whos_move == 1:
                     if m.boardstate[m.array_location + (i * move)].islower():
-                        if i * move == distance_moved:
+                        if i * move == m.distance_moved:
                             return True
                         else:
                             break
                 elif m.whos_move == -1:
                     if m.boardstate[m.array_location + (i * move)].isupper():
-                        if i * move == distance_moved:
+                        if i * move == m.distance_moved:
                             return True
                         else:
                             break

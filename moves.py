@@ -127,9 +127,6 @@ def check_checker(boardstate: tuple) -> bool:
                     return True
     return False          
 
-start_square = move[0:2]
-end_square = move[2:4]
-
 def square_finder(ss: str, es: str) -> tuple:
     """
     A function that finds the value in the board array of the start and end squares for a move.\n
@@ -146,9 +143,6 @@ def square_finder(ss: str, es: str) -> tuple:
     end_square_array_value = 8 * (8 - int(es[1])) + end_square_letter_value
 
     return start_square_array_value, end_square_array_value
-
-#Gets the array values for the start square and end square for the move
-array_location, end_array_location = square_finder()
 
 def blank_checker(ss: str) -> bool:
     """

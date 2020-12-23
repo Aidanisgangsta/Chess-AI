@@ -221,8 +221,7 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         if check_checker(tuple(new_board)):
             return False
     else:
-        return False
-    
+        return False    
 
     return PieceFuncDict[piece_lower](move, boardstate)
 

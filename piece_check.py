@@ -6,8 +6,6 @@ def pawn_check() -> bool:
     A function that checks if a pawn move is possible
     """
 
-    print(m.whos_move)
-
     #Iterates over every possible pawn move
     for move in available_moves:
         #Checks if the start location + the change is direction by the move in the array = end location

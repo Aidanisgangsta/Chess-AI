@@ -47,7 +47,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_checker(move, board.chessboard)
+                valid_move = move_checker(move, boardstate)
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     board.printboard()
@@ -154,7 +154,7 @@ def blank_checker(al: str) -> bool:
     Returns True or False depending on whether or not the start square is blank.
     """
 
-    start_piece = board.chessboard[ss]
+    start_piece = boardstate[al]
     if start_piece == ".":
         return True
     else:
@@ -165,7 +165,7 @@ def colour_checker(array_location: int) -> bool:
     A function which checks if the piece to move is the correct colour.
     """
 
-    piece = board.chessboard[array_location]
+    piece = boardstate[array_location]
 
     if whos_move == 1:
         if piece.isupper():
@@ -189,7 +189,7 @@ def move_checker(move: str, boardstate: tuple) -> bool:
     #Gets the array values for the start square and end square for the move
     array_location, end_array_location = square_finder(start_square, end_square)
     #Gets the piece you selected and converts it to lowercase
-    piece_moved = board.chessboard[array_location]
+    piece_moved = boardstate[array_location]
     #Finds the tuple of available move directions from the dictionary of moves
     available_moves = piece_moves.get(piece_moved.casefold())
     #Total distance moved by the piece in the array
@@ -251,14 +251,14 @@ def modify_board(piece_moved, new_board: tuple) -> None:
     """
 
     #Find the piece that was moved
-    piece_moved = board.chessboard[array_location]
+    piece_moved = boardstate[array_location]
     #Creates new board object
-    new_board = list(board.chessboard)
+    new_board = list(boardstate)
     #Replaces pieces old location with a blank square
     new_board[array_location] = "."
     #Replaces the old square with the new piece
     new_board[end_array_location] = piece_moved
 
     #Appends the old board to a list of all the board positions
-    board_history.append(board.chessboard)
-    board.chessboard = tuple(new_board)
+    board_history.append(boardstate)
+    boardstate = tuple(new_board)

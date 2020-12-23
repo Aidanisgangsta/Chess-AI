@@ -44,7 +44,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_checker(move, board.board)
+                valid_move = move_checker(move, board.chessboard)
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     board.printboard()
@@ -252,14 +252,14 @@ def modify_board(piece_moved, new_board: tuple) -> None:
     """
 
     #Find the piece that was moved
-    piece_moved = board.board[array_location]
+    piece_moved = board.chessboard[array_location]
     #Creates new board object
-    new_board = list(board.board)
+    new_board = list(board.chessboard)
     #Replaces pieces old location with a blank square
     new_board[array_location] = "."
     #Replaces the old square with the new piece
     new_board[end_array_location] = piece_moved
 
     #Appends the old board to a list of all the board positions
-    board_history.append(board.board)
-    board.board = tuple(new_board)
+    board_history.append(board.chessboard)
+    board.chessboard = tuple(new_board)

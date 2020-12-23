@@ -144,7 +144,7 @@ def square_finder(ss: str, es: str) -> tuple:
 
     return start_square_array_value, end_square_array_value
 
-def blank_checker(ss: str) -> bool:
+def blank_checker(al: str) -> bool:
     """
     A function that checks whether the enter start square is blank or not.\n
 
@@ -204,7 +204,7 @@ def move_checker(move: str, boardstate: tuple) -> bool:
 
     if PieceFuncDict[piece_lower]():
         #Finds out if the start square entered is blank
-        if blank_checker(start_square):
+        if blank_checker(array_location):
             return False
 
         #Check if the piece entered is the correct colour

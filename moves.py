@@ -130,7 +130,7 @@ def check_checker(boardstate: tuple) -> bool:
 start_square = move[0:2]
 end_square = move[2:4]
 
-def square_finder() -> tuple:
+def square_finder(ss: str, es: str) -> tuple:
     """
     A function that finds the value in the board array of the start and end squares for a move.\n
 
@@ -138,19 +138,19 @@ def square_finder() -> tuple:
     """
 
     #Finds the array position of the starting square
-    start_square_letter_value = board.FILE_LETTERS.index(start_square[0])
-    start_square_array_value = 8 * (8 - int(start_square[1])) + start_square_letter_value
+    start_square_letter_value = board.FILE_LETTERS.index(ss[0])
+    start_square_array_value = 8 * (8 - int(ss[1])) + start_square_letter_value
 
     #Finds the array position of the ending square
-    end_square_letter_value = board.FILE_LETTERS.index(end_square[0])
-    end_square_array_value = 8 * (8 - int(end_square[1])) + end_square_letter_value
+    end_square_letter_value = board.FILE_LETTERS.index(es[0])
+    end_square_array_value = 8 * (8 - int(es[1])) + end_square_letter_value
 
     return start_square_array_value, end_square_array_value
 
 #Gets the array values for the start square and end square for the move
 array_location, end_array_location = square_finder()
 
-def blank_checker() -> bool:
+def blank_checker(ss: str) -> bool:
     """
     A function that checks whether the enter start square is blank or not.\n
 
@@ -163,7 +163,7 @@ def blank_checker() -> bool:
     else:
         return False
 
-def colour_checker() -> bool:
+def colour_checker(array_location: int) -> bool:
     """
     A function which checks if the piece to move is the correct colour.
     """
@@ -210,11 +210,11 @@ def move_checker(move: str, boardstate: tuple) -> bool:
 
     if PieceFuncDict[piece_lower](move, boardstate):
         #Finds out if the start square entered is blank
-        if blank_checker():
+        if blank_checker(start_square):
             return False
 
         #Check if the piece entered is the correct colour
-        if colour_checker() == False:
+        if colour_checker(array_location) == False:
             return False
         
         #Checks if the new board has the players king in check

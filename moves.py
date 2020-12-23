@@ -157,7 +157,7 @@ def blank_checker() -> bool:
     Returns True or False depending on whether or not the start square is blank.
     """
 
-    start_piece = board.chessboard[start_square]
+    start_piece = board.chessboard[ss]
     if start_piece == ".":
         return True
     else:
@@ -184,8 +184,20 @@ def colour_checker() -> bool:
 def move_checker(move: str, boardstate: tuple) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
-    """
-    
+    """    
+
+    start_square = move[0:2]
+    end_square = move[2:4]
+
+    #Gets the array values for the start square and end square for the move
+    array_location, end_array_location = square_finder(start_square, end_square)
+    #Gets the piece you selected and converts it to lowercase
+    piece_moved = board.chessboard[array_location]
+    #Finds the tuple of available move directions from the dictionary of moves
+    available_moves = piece_moves.get(piece_moved.casefold())
+    #Total distance moved by the piece in the array
+    distance_moved = end_array_location - array_location
+
     piece_lower = piece_moved.casefold()
 
     PieceFuncDict = {

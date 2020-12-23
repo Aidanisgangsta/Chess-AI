@@ -2,7 +2,7 @@ import board
 import moves
 import chess_ai
 
-def main():
+def game():
     board.printboard()
     while True:
         moves.make_move()
@@ -18,4 +18,5 @@ def main():
             print("\nDraw by 50 move rule")
             break
 
-main()
+if __name__ == "__main__":
+    game()

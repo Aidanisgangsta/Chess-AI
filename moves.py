@@ -10,6 +10,9 @@ whos_move = 1
 
 board_history = []
 
+#Creates a new board as a list
+boardstate = list(board.chessboard)
+
 halfmove_checker = 0
 
 N = -8

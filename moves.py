@@ -10,6 +10,8 @@ whos_move = 1
 
 board_history = []
 
+halfmove_checker = 0
+
 N = -8
 E = 1
 S = 8
@@ -226,6 +228,7 @@ def threefold_check() -> bool:
             return True
         else:
             return False
+
 def modify_board(piece_moved, new_board: tuple) -> None:
     """
     A function that modifies the board to show the move that has been made.\n

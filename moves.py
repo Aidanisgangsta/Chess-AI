@@ -47,7 +47,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_checker(move, boardstate)
+                valid_move = move_checker(move)
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     board.printboard()
@@ -115,7 +115,8 @@ def check_checker(boardstate: list) -> bool:
                 move = notation_creator(king_location)
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(move, boardstate)
+                move_check = move_checker(move)
+                print(move_check)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -124,7 +125,8 @@ def check_checker(boardstate: list) -> bool:
                 move = notation_creator(king_location)
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(move, boardstate)
+                move_check = move_checker(move)
+                print(move_check)
                 whos_move *= -1
                 if move_check:
                     return True

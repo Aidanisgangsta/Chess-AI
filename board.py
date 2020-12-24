@@ -27,7 +27,7 @@ PIECE_SYMBOLS = {
     ".": "."
 }
 
-def printboard():
+def printboard(brd):
     """
     A function that prints the board showing the piece occupying the square with notation printed along the side of the board.\n
 
@@ -41,7 +41,7 @@ def printboard():
     row_num = BOARDSIZE
 
     square_num = 0
-    for square in chessboard:        
+    for square in brd:        
         current_row = BOARDSIZE - floor(square_num/BOARDSIZE)
         #Prints the row number for the first row
         if square_num == 0:

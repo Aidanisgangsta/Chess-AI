@@ -180,7 +180,7 @@ def colour_checker(array_location: int) -> bool:
         else:
             return False
 
-def move_checker(move: str, boardstate: tuple) -> bool:
+def move_checker(array_location, end_array_location, available_moves, distance_moved, piece_moved) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
     """
@@ -216,6 +216,8 @@ def check_handler(move: str) -> bool:
     available_moves = piece_moves.get(piece_moved.casefold())
     #Total distance moved by the piece in the array
     distance_moved = end_array_location - array_location
+    
+    if move_checker(array_location, end_array_location, available_moves, distance_moved, piece_moved):
         #Finds out if the start square entered is blank
         if blank_checker(array_location):
             return False

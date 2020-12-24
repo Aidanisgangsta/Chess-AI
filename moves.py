@@ -183,19 +183,7 @@ def colour_checker(array_location: int) -> bool:
 def move_checker(move: str, boardstate: tuple) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
-    """    
-
-    start_square = move[0:2]
-    end_square = move[2:4]
-
-    #Gets the array values for the start square and end square for the move
-    array_location, end_array_location = square_finder(start_square, end_square)
-    #Gets the piece you selected and converts it to lowercase
-    piece_moved = boardstate[array_location]
-    #Finds the tuple of available move directions from the dictionary of moves
-    available_moves = piece_moves.get(piece_moved.casefold())
-    #Total distance moved by the piece in the array
-    distance_moved = end_array_location - array_location
+    """
 
     piece_lower = piece_moved.casefold()
 
@@ -205,9 +193,29 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         "b": pc.bishop_check, 
         "k": pc.king_check,
         "n": pc.knight_check, 
-        "q": pc.queen_check}
+        "q": pc.queen_check
+        }
 
-    if PieceFuncDict[piece_lower](array_location, end_array_location, available_moves, distance_moved):
+    board.printboard(boardstate)
+
+    return PieceFuncDict[piece_lower](array_location, end_array_location, available_moves, distance_moved)
+
+def check_handler(move: str) -> bool:
+    """
+    A function that handles and runs all the checks.
+    """
+    
+    start_square = move[0:2]
+    end_square = move[2:4]
+
+    #Gets the array values for the start square and end square for the move
+    array_location, end_array_location = square_finder(start_square, end_square)
+    #Gets the piece you selected and converts it to lowercase
+    piece_moved = board.chessboard[array_location]
+    #Finds the tuple of available move directions from the dictionary of moves
+    available_moves = piece_moves.get(piece_moved.casefold())
+    #Total distance moved by the piece in the array
+    distance_moved = end_array_location - array_location
         #Finds out if the start square entered is blank
         if blank_checker(array_location):
             return False

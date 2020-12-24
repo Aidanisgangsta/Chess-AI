@@ -2,8 +2,8 @@ from board import printboard, chessboard
 import moves
 
 def game():
-    printboard(chessboard)
     while True:
+        printboard(chessboard)
         moves.make_move()
         moves.halfmove_checker += 1
 

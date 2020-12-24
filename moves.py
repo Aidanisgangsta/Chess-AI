@@ -219,7 +219,8 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         #Checks if the new board has the players king in check
         if check_checker(boardstate):
             return False
-            
+        
+        board.board = boardstate
         return True
     else:
         return False    

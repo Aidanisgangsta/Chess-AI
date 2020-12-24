@@ -237,6 +237,11 @@ def check_handler(move: str) -> bool:
     else:
         return False    
 
+def promotion():
+    """
+    A function that deals with a pawn that has promoted.
+    """
+
 def threefold_check() -> bool:
     """
     A function that checks if a board state has occured three times.\n

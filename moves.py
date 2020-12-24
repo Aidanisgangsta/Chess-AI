@@ -248,15 +248,8 @@ def modify_board(piece_moved, new_board: tuple) -> None:
      - The board is set to = the new board as a tuple.
     """
 
-    #Find the piece that was moved
-    piece_moved = boardstate[array_location]
-    #Creates new board object
-    new_board = list(boardstate)
+    global boardstate
     #Replaces pieces old location with a blank square
-    new_board[array_location] = "."
+    boardstate[start_square] = "."
     #Replaces the old square with the new piece
-    new_board[end_array_location] = piece_moved
-
-    #Appends the old board to a list of all the board positions
-    board_history.append(boardstate)
-    boardstate = tuple(new_board)
+    boardstate[end_square] = piece_moved

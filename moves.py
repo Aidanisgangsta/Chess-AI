@@ -62,7 +62,7 @@ def make_move() -> None:
         else:
             print("\nPlease enter a move in the correct format (e.g. a1c3)")
             
-def check_checker(boardstate: tuple) -> bool:
+def check_checker(boardstate: list) -> bool:
     """
     A function that takes in a board state and checks if the player is in check.\n
 
@@ -217,7 +217,7 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         #! REMOVE ONCE FIXED 
         new_board = ["."]
         #Checks if the new board has the players king in check
-        if check_checker(tuple(new_board)):
+        if check_checker(boardstate):
             return False
             
         return True

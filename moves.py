@@ -214,6 +214,8 @@ def move_checker(move: str, boardstate: tuple) -> bool:
         if colour_checker(array_location) == False:
             return False
         
+        modify_board(piece_moved, array_location, end_array_location)
+
         #Checks if the new board has the players king in check
         if check_checker(boardstate):
             return False
@@ -237,7 +239,7 @@ def threefold_check() -> bool:
         else:
             return False
 
-def modify_board(piece_moved, new_board: tuple) -> None:
+def modify_board(piece_moved: str, start_square: int, end_square: int) -> None:
     """
     A function that modifies the board to show the move that has been made.\n
 

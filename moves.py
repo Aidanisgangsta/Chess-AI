@@ -8,6 +8,8 @@ import re
 #This is so pawn moves are properly tested.
 whos_move = 1
 
+move = ""
+
 board_history = []
 
 #Creates a new board as a list

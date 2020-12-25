@@ -193,25 +193,27 @@ def check_handler() -> bool:
     #Gets the piece you selected and converts it to lowercase
     piece_moved = board.chessboard[array_location]
 
-    if move_checker(array_location, end_array_location, piece_moved):
         #Finds out if the start square entered is blank
-        if blank_checker(array_location):
-            return False
-
-        #Check if the piece entered is the correct colour
-        if colour_checker(array_location) == False:
-            return False
-        
-        modify_board(piece_moved, array_location, end_array_location)
-
-        #Checks if the new board has the players king in check
-        if check_checker(boardstate):
-            return False
-        
-        board.chessboard = tuple(boardstate)
-        return True
+    if blank_checker(array_location):
+        return False
     else:
-        return False    
+        if move_checker(array_location, end_array_location, piece_moved):
+
+            #Check if the piece entered is the correct colour
+            if colour_checker(array_location) == False:
+                return False
+            
+            modify_board(piece_moved, array_location, end_array_location)
+
+            #Checks if the new board has the players king in check
+            if check_checker(boardstate):
+                return False
+            
+            board.chessboard = tuple(boardstate)
+            board_history.append(boardstate)
+            return True
+        else:
+            return False    
 
 def promotion():
     """

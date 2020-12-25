@@ -193,7 +193,7 @@ def check_handler() -> bool:
     #Gets the piece you selected and converts it to lowercase
     piece_moved = board.chessboard[array_location]
 
-        #Finds out if the start square entered is blank
+    #Finds out if the start square entered is blank
     if blank_checker(array_location):
         return False
     else:
@@ -210,7 +210,7 @@ def check_handler() -> bool:
                 return False
             
             board.chessboard = tuple(boardstate)
-            board_history.append(boardstate)
+            board_history.append(boardstate[:])
             return True
         else:
             return False    

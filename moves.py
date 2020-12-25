@@ -228,12 +228,11 @@ def threefold_check() -> bool:
     If it returns false the game will continue as normal.
     """
 
-    for board in board_history:
-        occurances = board_history.count(board)
-        if occurances == 3:
-            return True
-        else:
-            return False
+    occurances = board_history[-1].count(board)
+    if occurances == 3:
+        return True
+    else:
+        return False
 
 def modify_board(piece_moved: str, start_square: int, end_square: int) -> None:
     """

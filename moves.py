@@ -179,11 +179,11 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
 
     return PieceFuncDict[piece_lower](array_location, end_array_location, available_moves, distance_moved)
 
-def check_handler(move: str) -> bool:
+def check_handler() -> bool:
     """
     A function that handles and runs all the checks.
     """
-    
+
     start_square = move[0:2]
     end_square = move[2:4]
 

@@ -70,29 +70,6 @@ def check_checker(boardstate: list) -> bool:
      - If it is, it will see if that piece is attacking the players king.
      - If the king is under attack, it will return a True value otherwise it wil return False.
     """
-
-    def notation_creator(king_location: int):
-        """
-        A function that creates the notation from a piece location and king location.\n
-
-        Used when checking if a move places the king in check.
-        """
-
-        #Finds the first 2 characters of a move
-        xcoord = i % 8 + 1
-        ycoord = 8 - ((i - xcoord + 1)/ 8)
-
-        startchars = f"{board.FILE_LETTERS[xcoord - 1]}{int(ycoord)}"
-
-        #Finds the last 2 characters of the move
-        xcoord = king_location % 8 + 1
-        ycoord =  8 - ((king_location - xcoord + 1)/ 8)
-
-        endchars = f"{board.FILE_LETTERS[xcoord - 1]}{int(ycoord)}"
-        
-        move = startchars + endchars
-
-        return move
     
     global whos_move
     
@@ -112,7 +89,6 @@ def check_checker(boardstate: list) -> bool:
         #Checks if it is whites move
         if whos_move == 1:
             if boardstate[i].islower():
-                move = notation_creator(king_location)
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)
@@ -122,7 +98,6 @@ def check_checker(boardstate: list) -> bool:
                     return True
         elif whos_move == -1:
             if boardstate[i].isupper():
-                move = notation_creator(king_location)
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)

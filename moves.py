@@ -207,7 +207,7 @@ def check_handler() -> bool:
         if check_checker(boardstate):
             return False
         
-        board.board = boardstate
+        board.chessboard = tuple(boardstate)
         return True
     else:
         return False    

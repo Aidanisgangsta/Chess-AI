@@ -43,6 +43,7 @@ def make_move() -> None:
 
     while True:
         global move
+        global boardstate
         move = input("\nPlease enter a move: ")
         #Checks whether if it is a valid move
         if len(move) == 4:
@@ -57,6 +58,7 @@ def make_move() -> None:
                     whos_move *= -1
                     break
                 else:
+                    boardstate = list(board.chessboard)
                     print("\nPlease enter a valid move")
             else:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")

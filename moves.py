@@ -63,51 +63,7 @@ def make_move() -> None:
             else:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")
         else:
-            print("\nPlease enter a move in the correct format (e.g. a1c3)")
-            
-def check_checker(boardstate: list) -> bool:
-    """
-    A function that takes in a board state and checks if the player is in check.\n
-
-     - Scans over every square in the board and sees if it is occupyed by an opponent piece.
-     - If it is, it will see if that piece is attacking the players king.
-     - If the king is under attack, it will return a True value otherwise it wil return False.
-    """
-    
-    global whos_move
-    
-    #Finds location of current colours king 
-    king_location = -1
-    for i in range(len(boardstate)):
-        if whos_move == 1:
-            if boardstate[i] == "K":
-                king_location = i
-        elif whos_move == -1:
-            if boardstate[i] == "k":
-                king_location = i
-
-    #Iterates over every square in the board
-    #Checks if the piece on that sqaure can attack the king
-    for i in range(len(boardstate)):
-        #Checks if it is whites move
-        piece = boardstate[i]
-        if whos_move == 1:
-            if piece.islower():
-                #Checks if the move is a legit move
-                whos_move *= -1
-                move_check = move_checker(i, king_location, piece)
-                whos_move *= -1
-                if move_check:
-                    return True
-        elif whos_move == -1:
-            if piece.isupper():
-                #Checks if the move is a legit move
-                whos_move *= -1
-                move_check = move_checker(i, king_location, piece)
-                whos_move *= -1
-                if move_check:
-                    return True
-    return False          
+            print("\nPlease enter a move in the correct format (e.g. a1c3)")        
 
 def square_finder(ss: str, es: str) -> tuple:
     """
@@ -156,6 +112,50 @@ def colour_checker(array_location: int) -> bool:
             return True
         else:
             return False
+
+def check_checker(boardstate: list) -> bool:
+    """
+    A function that takes in a board state and checks if the player is in check.\n
+
+     - Scans over every square in the board and sees if it is occupyed by an opponent piece.
+     - If it is, it will see if that piece is attacking the players king.
+     - If the king is under attack, it will return a True value otherwise it wil return False.
+    """
+    
+    global whos_move
+    
+    #Finds location of current colours king 
+    king_location = -1
+    for i in range(len(boardstate)):
+        if whos_move == 1:
+            if boardstate[i] == "K":
+                king_location = i
+        elif whos_move == -1:
+            if boardstate[i] == "k":
+                king_location = i
+
+    #Iterates over every square in the board
+    #Checks if the piece on that sqaure can attack the king
+    for i in range(len(boardstate)):
+        #Checks if it is whites move
+        piece = boardstate[i]
+        if whos_move == 1:
+            if piece.islower():
+                #Checks if the move is a legit move
+                whos_move *= -1
+                move_check = move_checker(i, king_location, piece)
+                whos_move *= -1
+                if move_check:
+                    return True
+        elif whos_move == -1:
+            if piece.isupper():
+                #Checks if the move is a legit move
+                whos_move *= -1
+                move_check = move_checker(i, king_location, piece)
+                whos_move *= -1
+                if move_check:
+                    return True
+    return False  
 
 def move_checker(array_location, end_array_location, piece_moved) -> bool:
     """
@@ -245,7 +245,6 @@ def promotion():
                         break
                     else:
                         print("\nPlease enter a valid piece (N, B, R, Q)")
-
 
 def threefold_check() -> bool:
     """

@@ -31,13 +31,12 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
                     if piece_to_capture.isupper():
                         return True
 
-            new_board = list(m.boardstate)
             #Checks for en passant capture
             if piece_to_capture == ".":
                 if m.whos_move == 1:
                     if m.boardstate[end_array_location + 8] == "p":
-                        if m.board_history[-1][end_array_location - 8] == "p" and m.board_history[-1][end_array_location + 8] == ".":
-                            new_board[end_array_location + 8] = "."
+                        if m.board_history[-2][end_array_location - 8] == "p" and m.board_history[-2][end_array_location + 8] == ".":
+                            m.boardstate[end_array_location + 8] = "."
                             return True
                         else:
                             return False
@@ -45,8 +44,8 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
                         return False
                 elif m.whos_move == -1:
                     if m.boardstate[end_array_location - 8] == "P":
-                        if m.board_history[-1][end_array_location - 8] == "p" and m.board_history[-1][end_array_location + 8] == ".":
-                            new_board[end_array_location - 8] = "."
+                        if m.board_history[-2][end_array_location - 8] == "p" and m.board_history[-2][end_array_location + 8] == ".":
+                            m.boardstate[end_array_location - 8] = "."
                             return True
     return False
 

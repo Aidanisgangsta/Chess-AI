@@ -93,7 +93,7 @@ def check_checker(boardstate: list) -> bool:
             if piece.islower():
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(move)
+                move_check = move_checker(i, king_location, piece)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -101,7 +101,7 @@ def check_checker(boardstate: list) -> bool:
             if piece.isupper():
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(move)
+                move_check = move_checker(i, king_location, piece)
                 whos_move *= -1
                 if move_check:
                     return True

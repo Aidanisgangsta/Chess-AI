@@ -90,6 +90,7 @@ def check_checker(boardstate: list) -> bool:
         #Checks if it is whites move
         piece = boardstate[i]
         if whos_move == 1:
+            if piece.islower():
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)

@@ -48,12 +48,7 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
                         if m.board_history[-1][end_array_location - 8] == "p" and m.board_history[-1][end_array_location + 8] == ".":
                             new_board[end_array_location - 8] = "."
                             return True
-                        else:
-                            return False
-                    else:
-                        return False
-            else:
-                return False
+    return False
 
 def rook_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
     """

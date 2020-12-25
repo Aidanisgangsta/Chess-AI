@@ -205,6 +205,9 @@ def check_handler() -> bool:
             
             modify_board(piece_moved, array_location, end_array_location)
 
+            #Checks if a pawn can be promoted
+            promotion()
+
             #Checks if the new board has the players king in check
             if check_checker(boardstate):
                 return False
@@ -219,6 +222,30 @@ def promotion():
     """
     A function that deals with a pawn that has promoted.
     """
+
+    global boardstate
+
+    if whos_move == 1:
+        for i in range(8):
+            if boardstate[i] == "P":
+                while True:
+                    new_piece = input("\nWhat would you like to promote to? ")
+                    if new_piece.casefold() in piece_moves:
+                        boardstate[i] = new_piece.capitalize()
+                        break
+                    else:
+                        print("\nPlease enter a valid piece (N, B, R, Q)")
+    elif whos_move == -1:
+        for i in range(56, 64):
+            if boardstate[i] == "p":
+                while True:
+                    new_piece = input("\nWhat would you like to promote to? ")
+                    if new_piece.casefold() in piece_moves:
+                        boardstate[i] = new_piece.casefold()
+                        break
+                    else:
+                        print("\nPlease enter a valid piece (N, B, R, Q)")
+
 
 def threefold_check() -> bool:
     """

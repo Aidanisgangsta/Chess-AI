@@ -52,7 +52,6 @@ def make_move() -> None:
                 valid_move = move_checker(move)
                 if valid_move:
                     print("\nOk, your move has been made\n")
-                    board.printboard()
                     #Changes whos move it is
                     global whos_move
                     whos_move *= -1
@@ -94,7 +93,6 @@ def check_checker(boardstate: list) -> bool:
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)
-                print(move_check)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -103,7 +101,6 @@ def check_checker(boardstate: list) -> bool:
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)
-                print(move_check)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -178,7 +175,6 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
         "q": pc.queen_check
         }
 
-    board.printboard(boardstate)
 
     return PieceFuncDict[piece_lower](array_location, end_array_location, available_moves, distance_moved)
 

@@ -49,7 +49,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_checker(move)
+                valid_move = check_handler()
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     #Changes whos move it is

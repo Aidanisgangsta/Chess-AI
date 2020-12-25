@@ -88,8 +88,8 @@ def check_checker(boardstate: list) -> bool:
     #Checks if the piece on that sqaure can attack the king
     for i in range(len(boardstate)):
         #Checks if it is whites move
+        piece = boardstate[i]
         if whos_move == 1:
-            if boardstate[i].islower():
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)
@@ -97,7 +97,7 @@ def check_checker(boardstate: list) -> bool:
                 if move_check:
                     return True
         elif whos_move == -1:
-            if boardstate[i].isupper():
+            if piece.isupper():
                 #Checks if the move is a legit move
                 whos_move *= -1
                 move_check = move_checker(move)

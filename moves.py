@@ -28,7 +28,7 @@ piece_moves = {
     "n": (N+N+W, N+N+E, E+E+N, E+E+S, S+S+E, S+S+W, W+W+S, W+W+N),
     "b": (N+W, N+E, S+W, S+E),
     "q": (N, E, S, W, N+W, N+E, S+W, S+E),
-    "k": (N, E, S, W, N+W, N+E, S+W, S+E)
+    "k": (N, E, S, W, N+W, N+E, S+W, S+E, E+E, W+W)
 }
 
 def make_move() -> None:

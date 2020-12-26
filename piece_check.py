@@ -126,7 +126,82 @@ def king_check(array_location, end_array_location, available_moves, distance_mov
         if array_location + move == end_array_location:
             #Checks if the move lands on a clear square
             if m.boardstate[end_array_location] == ".":
-                return True
+                #Checks for kingside castling
+                if move == 2:
+                    if m.whos_move == 1:
+                        #Checks if the square to the right of the king is blank
+                        if m.boardstate[array_location + 1] == ".":
+                            #Checks if the rook is on the edge of the board
+                            if m.boardstate[array_location + 3] == "R":
+                                #Checks if the king or rook have moved throughout the game
+                                for brd in m.board_history:
+                                    if brd[array_location] != "K" or brd[array_location + 3] != "R":
+                                        return False
+                                m.boardstate[array_location + 1] = "R"
+                                m.boardstate[array_location + 3] = "."
+                                return True
+                            else:
+                                return False
+                        else:
+                            return False
+                    elif m.whos_move == -1:
+                        #Checks if the square to the right of the king is blank
+                        if m.boardstate[array_location + 1] == ".":
+                        #Checks if the rook is on the edge of the board
+                            if m.boardstate[array_location + 3] == "r":
+                                #Checks if the king or rook have moved throughout the game
+                                for brd in m.board_history:
+                                    if brd[array_location] != "k" or brd[array_location + 3] != "r":
+                                        return False
+                                m.boardstate[array_location + 1] = "r"
+                                m.boardstate[array_location + 3] = "."
+                                return True
+                            else:
+                                return False
+                        else:
+                            return False
+                    else:
+                        return False
+
+                #Checks for queenside castling
+                elif move == -2:
+                    if m.whos_move == 1:
+                        #Checks if the square to the left of the king is blank
+                        if m.boardstate[array_location - 1] == "." and m.boardstate[array_location - 3] == ".":
+                            #Checks if the rook is on the edge of the board
+                            if m.boardstate[array_location - 4] == "R":
+                                #Checks if the king or rook have moved throughout the game
+                                for brd in m.board_history:
+                                    if brd[array_location] != "K" or brd[array_location - 4] != "R":
+                                        return False
+                                m.boardstate[array_location - 1] = "R"
+                                m.boardstate[array_location - 4] = "."
+                                return True
+                            else:
+                                return False
+                        else:
+                            return False
+                    elif m.whos_move == -1:
+                        #Checks if the square to the left of the king is blank
+                        if m.boardstate[array_location - 1] == "." and m.boardstate[array_location - 3] == ".":
+                            #Checks if the rook is on the edge of the board
+                            if m.boardstate[array_location - 4] == "r":
+                                #Checks if the king or rook have moved throughout the game
+                                for brd in m.board_history:
+                                    if brd[array_location] != "k" or brd[array_location - 4] != "r":
+                                        return False
+                                m.boardstate[array_location - 1] = "r"
+                                m.boardstate[array_location - 4] = "."
+                                return True
+                            else:
+                                return False
+                        else:
+                            return False
+                    else:
+                        return False
+                
+                else:
+                    return True
             else:
                 #Checks if the move is a possible capture
                 piece_to_capture = m.boardstate[end_array_location]

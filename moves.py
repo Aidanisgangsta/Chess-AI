@@ -254,7 +254,7 @@ def threefold_check() -> bool:
     If it returns false the game will continue as normal.
     """
 
-    occurances = board_history[-1].count(board)
+    occurances = board_history.count(board_history[-1])
     if occurances == 3:
         return True
     else:

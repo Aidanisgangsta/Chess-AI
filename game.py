@@ -9,7 +9,7 @@ def game():
 
         #Checks for threefold repition
         if moves.threefold_check():
-            print("\nDraw by threefold repition")
+            print("\nDraw by threefold repitition")
             break
         
         #Checks for 50 move rule

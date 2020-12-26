@@ -1,7 +1,7 @@
 import moves as m
 import board
 
-def pawn_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
+def pawn_check(array_location, end_array_location, available_moves) -> bool:
     """
     A function that checks if a pawn move is possible
     """
@@ -49,7 +49,7 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
                             return True
     return False
 
-def rook_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
+def rook_check(array_location, available_moves, distance_moved) -> bool:
     """
     A function that checks if a rook move is possible
     """
@@ -82,7 +82,7 @@ def rook_check(array_location, end_array_location, available_moves, distance_mov
                     break
     return False
 
-def bishop_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
+def bishop_check(array_location, available_moves, distance_moved) -> bool:
     """
     A function that checks if a bishop move is possible
     """
@@ -115,7 +115,7 @@ def bishop_check(array_location, end_array_location, available_moves, distance_m
                     break
     return False
 
-def king_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
+def king_check(array_location, end_array_location, available_moves) -> bool:
     """
     A function that checks if a king move is possible
     """
@@ -140,7 +140,7 @@ def king_check(array_location, end_array_location, available_moves, distance_mov
                     return False
     return False
 
-def knight_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
+def knight_check(array_location, end_array_location, available_moves) -> bool:
     """
     A function that checks if a knight move is possible.
     """
@@ -164,7 +164,7 @@ def knight_check(array_location, end_array_location, available_moves, distance_m
                     return False
     return False
 
-def queen_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
+def queen_check(array_location, available_moves, distance_moved) -> bool:
     """
     A function that checks if a queen move is possible
     """

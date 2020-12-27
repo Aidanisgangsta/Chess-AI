@@ -8,18 +8,24 @@ piece_values = {"p": 100, "n": 300, "b": 320, "r": 510, "q": 900, "k": 999999}
 def random_move_gen():
     moves = []
     #Finds all the possible moves for the player
-    for i in range(len(chessboard)):
+    for i, square in enumerate(chessboard):
         if whos_move == 1:
-            if chessboard[i].isupper():
-                for move in piece_moves[chessboard[i].casefold()]:
-                    end_square = i + (move * whos_move)
-                    print(end_square)
-                    if end_square < 0 or end_square > 63:
-                        continue
+            if square.isupper():
+                for move in piece_moves[square.casefold()]:
+                    if square == "R" or square == "B" or square == "Q":
+                        for d in range(1, 9):
+                            end_square = i + (move * whos_move * d)
+                            if end_square < 0 or end_square > 63:
+                                continue
+                            else:
+                                moves.append((i, end_square, square))
                     else:
-                        moves.append((i, end_square, chessboard[i]))
-            else:
-                continue
+                        end_square = i + (move * whos_move)
+                        if end_square < 0 or end_square > 63:
+                            continue
+                        else:
+                            moves.append((i, end_square, square))
+
         elif whos_move == -1:
             if chessboard[i].islower():
                 for move in piece_moves[chessboard[i].casefold()]:

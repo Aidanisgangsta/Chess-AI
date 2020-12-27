@@ -45,17 +45,18 @@ def printboard(brd):
     row_num = BOARDSIZE
 
     square_num = 0
-    for square in brd:        
-        current_row = BOARDSIZE - floor(square_num/BOARDSIZE)
-        #Prints the row number for the first row
-        if square_num == 0:
-            print(row_num, end=' ')
-        if row_num == current_row:
-            print(f"{PIECE_SYMBOLS.get(square)} ", end =" ")
-        else:
-            row_num -= 1
-            print(f"\n{row_num} {PIECE_SYMBOLS.get(square)} ", end =" ")
-        square_num += 1
+    for square in brd:
+        if square != "-":   
+            current_row = BOARDSIZE - floor(square_num/BOARDSIZE)
+            #Prints the row number for the first row
+            if square_num == 0:
+                print(row_num, end=' ')
+            if row_num == current_row:
+                print(f"{PIECE_SYMBOLS.get(square)} ", end =" ")
+            else:
+                row_num -= 1
+                print(f"\n{row_num} {PIECE_SYMBOLS.get(square)} ", end =" ")
+            square_num += 1
 
     #Prints the file letter
     print("\n ", end = " ")

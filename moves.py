@@ -226,7 +226,7 @@ def promotion():
     global boardstate
 
     if whos_move == 1:
-        for i in range(8):
+        for i in range(11, 19):
             if boardstate[i] == "P":
                 while True:
                     new_piece = input("\nWhat would you like to promote to? ")
@@ -236,7 +236,7 @@ def promotion():
                     else:
                         print("\nPlease enter a valid piece (N, B, R, Q)")
     elif whos_move == -1:
-        for i in range(56, 64):
+        for i in range(91, 99):
             if boardstate[i] == "p":
                 while True:
                     new_piece = input("\nWhat would you like to promote to? ")

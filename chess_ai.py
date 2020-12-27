@@ -15,13 +15,13 @@ def random_move_gen():
                     if square == "R" or square == "B" or square == "Q":
                         for d in range(1, 9):
                             end_square = i + (move * whos_move * d)
-                            if end_square < 0 or end_square > 63:
+                            if end_square < 0 or end_square > 119:
                                 continue
                             else:
                                 moves.append((i, end_square, square))
                     else:
                         end_square = i + (move * whos_move)
-                        if end_square < 0 or end_square > 63:
+                        if end_square < 0 or end_square > 119:
                             continue
                         else:
                             moves.append((i, end_square, square))

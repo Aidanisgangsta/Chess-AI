@@ -12,11 +12,19 @@ def random_move_gen():
         if whos_move == 1:
             if chessboard[i].isupper():
                 for move in piece_moves[chessboard[i].casefold()]:
-                    moves.append((i, i + (move * whos_move), chessboard[i]))
+                    end_square = i + (move * whos_move)
+                    print(end_square)
+                    if end_square < 0 or end_square > 63:
+                        continue
+                    else:
+                        moves.append((i, end_square, chessboard[i]))
+            else:
+                continue
         elif whos_move == -1:
             if chessboard[i].islower():
                 for move in piece_moves[chessboard[i].casefold()]:
                     moves.append((i, i + (move * whos_move), chessboard[i]))
+    print(moves)
     while True:
         rnd_move = choice(moves)
         move_checker(rnd_move[0], rnd_move[1], rnd_move[2])

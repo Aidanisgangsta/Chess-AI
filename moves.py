@@ -17,9 +17,9 @@ boardstate = list(board.chessboard)
 
 halfmove_checker = 0
 
-N = -8
+N = -10
 E = 1
-S = 8
+S = 10
 W = -1
 
 piece_moves = {

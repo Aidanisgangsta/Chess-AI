@@ -35,4 +35,5 @@ def random_move_gen():
         rnd_move = choice(moves)
         move_checker(rnd_move[0], rnd_move[1], rnd_move[2])
 
-random_move_gen()
+if __name__ == "__main__":
+    random_move_gen()

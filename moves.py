@@ -73,12 +73,12 @@ def square_finder(ss: str, es: str) -> tuple:
     """
 
     #Finds the array position of the starting square
-    start_square_letter_value = board.FILE_LETTERS.index(ss[0])
-    start_square_array_value = 8 * (8 - int(ss[1])) + start_square_letter_value
+    start_square_letter_value = board.FILE_LETTERS.index(ss[0]) + 1
+    start_square_array_value = 20 + (10 * (8 - int(ss[1])) + start_square_letter_value)
 
     #Finds the array position of the ending square
-    end_square_letter_value = board.FILE_LETTERS.index(es[0])
-    end_square_array_value = 8 * (8 - int(es[1])) + end_square_letter_value
+    end_square_letter_value = board.FILE_LETTERS.index(es[0]) + 1
+    end_square_array_value = 20 + (10 * (8 - int(es[1])) + end_square_letter_value)
 
     return start_square_array_value, end_square_array_value
 

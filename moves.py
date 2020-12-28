@@ -50,7 +50,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = check_handler()
+                valid_move = move_handler()
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     #Changes whos move it is
@@ -180,7 +180,7 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
 
     return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves, distance_moved)
 
-def check_handler() -> bool:
+def move_handler() -> bool:
     """
     A function that handles and runs all the checks.
     """

@@ -6,44 +6,43 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
     A function that checks if a pawn move is possible
     """
 
-    #Iterates over every possible pawn move
     for move in available_moves:
-        #Checks if the start location + the change is direction by the move in the array = end location
-        if array_location + (move * m.whos_move) == end_array_location:
-            if m.boardstate[end_array_location] != "-":
-                #Checks if the move is a move straight forward and the squares are clear
-                if (move * m.whos_move) % 10 == 0 and m.boardstate[end_array_location] == ".":
-                    #Checks if the move is 2 squares forward
-                    if move == -16:
+        if array_location + (m.whos_move * move) == end_array_location:
+            #Checks if move is straight forward
+            if move % 10 == 0:
+                #Checks if sqaure infront of the pawn is blank
+                if m.boardstate[array_location - (m.whos_move * 10)] == ".":
+                    #Checks for moving 2 squares 
+                    if move == 20 and m.boardstate[end_array_location] == ".":
                         #Checks if the pawn is on the starting rank
                         if m.whos_move == 1:
                             if array_location <= 80 and array_location >= 89:
-                                continue
+                                return False
                         elif m.whos_move == -1:
                             if array_location <= 30 and array_location >= 39:
-                                continue
-                        #Checks the square 1 square ahead of the pawn
-                        if m.boardstate[array_location + (m.whos_move * - 10)] == ".":
-                            return True
-                        else:
-                            return False
+                                return False
+                        return True
                     else:
                         return True
                 else:
-                    #Checks if the move is a possible capture
-                    piece_to_capture = m.boardstate[end_array_location]
-                    if m.whos_move == 1:
-                        if piece_to_capture.islower():
-                            return True
-                    elif m.whos_move == -1:
-                        if piece_to_capture.isupper():
-                            return True
-
+                    return False
+            #Checks for captures
+            else:
+                end_piece = m.boardstate[end_array_location]
+                #Checks for basic captures
+                if m.whos_move == 1:
+                    if end_piece.islower():
+                        return True
+                elif m.whos_move == -1:
+                    if end_piece.isupper():
+                        return True
                 #Checks for en passant capture
-                if piece_to_capture == ".":
+                if end_piece == ".": 
                     if m.whos_move == 1:
-                        if m.boardstate[end_array_location + 10] == "p":
-                            if m.board_history[-2][end_array_location - 10] == "p" and m.board_history[-2][end_array_location + 10] == ".":
+                        #Checks if there is a pawn next to the pawn and if it has moved 2 squares
+                        if m.boardstate[end_array_location + 10] == "p" and m.boardstate[end_array_location - 10] == ".":
+                            #Checks the last boardstate
+                            if m.board_history[-2][end_array_location + 10] == "." and m.board_history[-2][end_array_location - 10] == "p":
                                 m.boardstate[end_array_location + 10] = "."
                                 return True
                             else:
@@ -51,11 +50,18 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
                         else:
                             return False
                     elif m.whos_move == -1:
-                        if m.boardstate[end_array_location - 10] == "P":
-                            if m.board_history[-2][end_array_location - 10] == "p" and m.board_history[-2][end_array_location + 10] == ".":
+                        #Checks if there is a pawn next to the pawn and if it has moved 2 squares
+                        if m.boardstate[end_array_location - 10] == "P" and m.boardstate[end_array_location + 10] == ".":
+                            #Checks the last boardstate
+                            if m.board_history[-2][end_array_location - 10] == "." and m.board_history[-2][end_array_location + 10] == "P":
                                 m.boardstate[end_array_location - 10] = "."
                                 return True
-    return False
+                            else:
+                                return False
+                        else:
+                            return False
+                else:
+                    return False
 
 def rook_check(array_location, end_array_location, available_moves, distance_moved) -> bool:
     """

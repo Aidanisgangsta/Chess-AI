@@ -213,7 +213,6 @@ def move_handler() -> bool:
                 return False
             
             board.chessboard = tuple(boardstate)
-            board_history.append(boardstate[:])
             return True
         else:
             return False    

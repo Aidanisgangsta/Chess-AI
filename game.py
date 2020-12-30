@@ -3,6 +3,7 @@ import moves
 
 def game():
     while True:
+        moves.board_history.append(board.chessboard)
         board.printboard(board.chessboard)
         moves.make_move()
         moves.halfmove_checker += 1

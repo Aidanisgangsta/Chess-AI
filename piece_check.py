@@ -15,6 +15,13 @@ def pawn_check(array_location, end_array_location, available_moves, distance_mov
                 if (move * m.whos_move) % 10 == 0 and m.boardstate[end_array_location] == ".":
                     #Checks if the move is 2 squares forward
                     if move == -16:
+                        #Checks if the pawn is on the starting rank
+                        if m.whos_move == 1:
+                            if array_location <= 80 and array_location >= 89:
+                                continue
+                        elif m.whos_move == -1:
+                            if array_location <= 30 and array_location >= 39:
+                                continue
                         #Checks the square 1 square ahead of the pawn
                         if m.boardstate[array_location + (m.whos_move * - 10)] == ".":
                             return True

@@ -245,6 +245,12 @@ def promotion():
                     else:
                         print("\nPlease enter a valid piece (N, B, R, Q)")
 
+def stalemate():
+    pass
+
+def checkmate():
+    pass
+
 def threefold_check() -> bool:
     """
     A function that checks if a board state has occured three times.\n

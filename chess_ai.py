@@ -3,7 +3,7 @@ from moves import whos_move, piece_moves, move_checker
 from random import choice
 
 #Piece-value tables and piece values
-piece_values = {"p": 100, "n": 300, "b": 320, "r": 510, "q": 900, "k": 999999}
+piece_values = {"p": 100, "n": 310, "b": 330, "r": 500, "q": 900, "k": 20000}
 
 def random_move_gen():
     moves = []

@@ -2,7 +2,7 @@ from board import chessboard
 from moves import whos_move, piece_moves, move_checker
 from random import choice
 
-#Piece-value tables and piece values
+#Piece-Values
 piece_values = {"p": 100, "n": 310, "b": 330, "r": 500, "q": 900, "k": 20000}
 
 #Piece-Square Tables

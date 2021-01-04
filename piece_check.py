@@ -106,7 +106,7 @@ def bishop_check(array_location, end_array_location, available_moves, distance_m
         #Iterates over all the diagonals the bishop can possibly move on
         for i in range(1, board.BOARDSIZE):
             #Checks to see if the index is within the tuple
-            if (array_location + (i * move)) < 64 and (array_location + (i * move)) > -1:
+            if (array_location + (i * move)) < 99 and (array_location + (i * move)) > 20:
                 #Checks if every square along the diagonal is blank or if the end square can be captured
                 if m.boardstate[array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location

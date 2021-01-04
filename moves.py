@@ -54,7 +54,6 @@ def make_move() -> None:
                 if valid_move:
                     print("\nOk, your move has been made\n")
                     #Changes whos move it is
-                    global whos_move
                     whos_move *= -1
                     break
                 else:

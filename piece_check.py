@@ -77,18 +77,18 @@ def rook_check(array_location, end_array_location, available_moves, distance_mov
                 #Checks if every square along the row is blank or if the end square can be captured
                 if m.boardstate[array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
-                    if i * move == distance_moved:
+                    if array_location + (i * move) == end_array_location:
                         return True
                 #Checks if the move is a possible capture
                 elif m.whos_move == 1:
                     if m.boardstate[array_location + (i * move)].islower():
-                        if i * move == distance_moved:
+                        if array_location + (i * move) == end_array_location:
                             return True
                         else:
                             break
                 elif m.whos_move == -1:
                     if m.boardstate[array_location + (i * move)].isupper():
-                        if i * move == distance_moved:
+                        if array_location + (i * move) == end_array_location:
                             return True
                         else:
                             break

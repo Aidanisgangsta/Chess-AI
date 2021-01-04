@@ -64,7 +64,7 @@ def make_move() -> None:
         else:
             print("\nPlease enter a move in the correct format (e.g. a1c3)")        
 
-def square_finder(ss: str, es: str) -> tuple:
+def square_finder(start_square: str, end_square: str) -> tuple:
     """
     A function that finds the value in the board array of the start and end squares for a move.\n
 
@@ -72,23 +72,23 @@ def square_finder(ss: str, es: str) -> tuple:
     """
 
     #Finds the array position of the starting square
-    start_square_letter_value = board.FILE_LETTERS.index(ss[0]) + 1
-    start_square_array_value = 20 + (10 * (8 - int(ss[1])) + start_square_letter_value)
+    start_square_letter_value = board.FILE_LETTERS.index(start_square[0]) + 1
+    start_square_array_value = 20 + (10 * (8 - int(start_square[1])) + start_square_letter_value)
 
     #Finds the array position of the ending square
-    end_square_letter_value = board.FILE_LETTERS.index(es[0]) + 1
-    end_square_array_value = 20 + (10 * (8 - int(es[1])) + end_square_letter_value)
+    end_square_letter_value = board.FILE_LETTERS.index(end_square[0]) + 1
+    end_square_array_value = 20 + (10 * (8 - int(end_square[1])) + end_square_letter_value)
 
     return start_square_array_value, end_square_array_value
 
-def blank_checker(al: str) -> bool:
+def blank_checker(array_location: str) -> bool:
     """
     A function that checks whether the enter start square is blank or not.\n
 
     Returns True or False depending on whether or not the start square is blank.
     """
 
-    start_piece = boardstate[al]
+    start_piece = boardstate[array_location]
     if start_piece == ".":
         return True
     else:

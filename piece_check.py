@@ -92,8 +92,6 @@ def rook_check(array_location, end_array_location, available_moves, distance_mov
                             return True
                         else:
                             break
-                else:
-                    break
     return False
 
 def bishop_check(array_location, end_array_location, available_moves, distance_moved) -> bool:

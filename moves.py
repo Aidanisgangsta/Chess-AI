@@ -249,6 +249,10 @@ def stalemate():
 
 def checkmate():
     pass
+def random_move_gen():
+    """
+    A function that generates all the moves possible by the pieces.
+    """
 
 def threefold_check() -> bool:
     """

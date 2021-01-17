@@ -245,7 +245,11 @@ def promotion():
                         print("\nPlease enter a valid piece (N, B, R, Q)")
 
 def stalemate():
-    pass
+    """
+    A fucntion that checks if the player is in stalemate.
+    """
+
+    global whos_move
 
 def checkmate():
     """

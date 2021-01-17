@@ -248,7 +248,20 @@ def stalemate():
     pass
 
 def checkmate():
-    pass
+    """
+    A function that checks if the player is in checkmate.
+    """
+
+    unmodified_board = boardstate.copy()
+
+    in_check = check_checker(boardstate)
+    
+    if in_check:
+        pass
+    else:
+        return False
+    print(in_check)
+
 def random_move_gen():
     """
     A function that generates all the moves possible by the pieces.

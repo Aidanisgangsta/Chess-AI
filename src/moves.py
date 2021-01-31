@@ -285,6 +285,54 @@ def random_move_gen():
     A function that generates all the moves possible by the pieces.
     """
 
+    moves = []
+    #Finds all the possible moves for the player
+    for i, square in enumerate(board.chessboard):
+        if whos_move == 1:
+            if square.isupper():
+                for move in piece_moves[square.casefold()]:
+                    if square == "R" or square == "B" or square == "Q":
+                        #Checks for moves that are more than one square 
+                        for d in range(1, 9):
+                            end_square = i + (move * whos_move * d)
+                            #Checks if the move is off the board
+                            if end_square < 0 or end_square > 119:
+                                continue
+                            else:
+                                if move_checker(i, end_square, square):
+                                    moves.append((i, end_square, square))
+                    else:
+                        end_square = i + (move * whos_move)
+                        #Checks if the move is off the board
+                        if end_square < 0 or end_square > 119:
+                            continue
+                        else:
+                            if move_checker(i, end_square, square):
+                                    moves.append((i, end_square, square))
+
+        elif whos_move == -1:
+            if board.chessboard[i].islower():
+                for move in piece_moves[square.casefold()]:
+                    if square == "r" or square == "b" or square == "q":
+                        #Checks for moves that are more than one square 
+                        for d in range(1, 9):
+                            end_square = i + (move * whos_move * d)
+                            #Checks if the move is off the board
+                            if end_square < 0 or end_square > 119:
+                                continue
+                            else:
+                                if move_checker(i, end_square, square):
+                                    moves.append((i, end_square, square))
+                    else:
+                        end_square = i + (move * whos_move)
+                        #Checks if the move is off the board
+                        if end_square < 0 or end_square > 119:
+                            continue
+                        else:
+                            if move_checker(i, end_square, square):
+                                    moves.append((i, end_square, square))
+    return moves
+
 def threefold_check() -> bool:
     """
     A function that checks if a board state has occured three times.\n

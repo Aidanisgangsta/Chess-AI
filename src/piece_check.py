@@ -79,22 +79,23 @@ def rook_check(array_location, end_array_location, available_moves, distance_mov
                     #Checks if the start location + the change is direction by the move in the array = end location
                     if array_location + (i * move) == end_array_location:
                         return True
-                #Checks if the sqaure is off the board
-                elif m.boardstate[array_location + (i * move)] == "-":
-                    break
-                #Checks if the move is a possible capture
-                elif m.whos_move == 1:
-                    if m.boardstate[array_location + (i * move)].islower():
-                        if array_location + (i * move) == end_array_location:
-                            return True
-                        else:
-                            break
-                elif m.whos_move == -1:
-                    if m.boardstate[array_location + (i * move)].isupper():
-                        if array_location + (i * move) == end_array_location:
-                            return True
-                        else:
-                            break
+
+                #Checks if any squares are not blank in the move
+                elif m.boardstate[array_location + (i * move)] != ".":
+                    #Checks if the move is a possible capture
+                    if m.whos_move == 1:
+                        if m.boardstate[array_location + (i * move)].islower():
+                            if array_location + (i * move) == end_array_location:
+                                return True
+                            else:
+                                break
+                    elif m.whos_move == -1:
+                        if m.boardstate[array_location + (i * move)].isupper():
+                            if array_location + (i * move) == end_array_location:
+                                return True
+                            else:
+                                break
+                    return False
     return False
 
 def bishop_check(array_location, end_array_location, available_moves, distance_moved) -> bool:

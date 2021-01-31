@@ -1,5 +1,6 @@
 import board
 import moves
+import chess_ai as ai
 
 def game():
     while True:

@@ -193,7 +193,7 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
 
     return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves, distance_moved)
 
-def move_handler() -> bool:
+def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
     """
     A function that handles and runs all the checks.
     """

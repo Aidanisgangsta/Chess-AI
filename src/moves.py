@@ -201,10 +201,11 @@ def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
     start_square = move[0:2]
     end_square = move[2:4]
 
-    #Gets the array values for the start square and end square for the move
-    array_location, end_array_location = square_finder(start_square, end_square)
-    #Gets the piece you selected and converts it to lowercase
-    piece_moved = board.chessboard[array_location]
+    if piece_moved == 0:
+        #Gets the array values for the start square and end square for the move
+        array_location, end_array_location = square_finder(start_square, end_square)
+        #Gets the piece you selected and converts it to lowercase
+        piece_moved = board.chessboard[array_location]
 
     #Finds out if the start square entered is blank
     if blank_checker(array_location):

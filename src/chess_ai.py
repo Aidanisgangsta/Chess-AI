@@ -62,9 +62,26 @@ piece_square_tables = {
         20, 30, 10,  0,  0, 10, 30, 20)
 }
 
+def evaluation():
+    """
+    A function that evaluates the current boardstate.\n
+
+    This will account for:
+     - The material count
+     - The activity of the pieces
+    """
+
+def move_calculator():
+    """
+    A function that will calculate the best moves for the cuurent position.\n
+
+    This works by:
+     - Will check all the moves in the current position
+    """
 
 def random_move_gen():
-    move_gen()
+    pass
+    #move_gen()
     #while True:
     #    rnd_move = choice(moves)
     #    move_checker(rnd_move[0], rnd_move[1], rnd_move[2])

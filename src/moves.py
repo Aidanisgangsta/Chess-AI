@@ -267,7 +267,22 @@ def stalemate():
     A function that checks if the player is in stalemate.
     """
 
-    global whos_move
+    global boardstate
+
+    unmodified_board = boardstate[:]
+
+    moves = move_gen()
+
+    for move in moves:
+        possible_move = move_handler(move[0], move[1], move[2])
+        print(move)
+        print(possible_move)
+        boardstate = unmodified_board[:]
+
+        if possible_move:
+            return False
+    
+    return True
 
 def checkmate():
     """

@@ -47,16 +47,19 @@ def make_move() -> None:
         global whos_move
 
         #Checks if the side is in checkmate or stalemate
-        if stalemate():
-            print("\nDraw by stalemate")
-            break
-        if checkmate():
+        in_checkmate = checkmate()
+        if in_checkmate:
             if whos_move == 1:
                 print("Black won by checkmate")
                 break
             elif whos_move == -1:
                 print("White won by checkmate")
                 break
+        in_stalemate = stalemate()
+        print(in_stalemate, whos_move)
+        if in_stalemate:
+            print("\nDraw by stalemate")
+            break
 
         move = input("\nPlease enter a move: ")
         #Checks whether if it is a valid move

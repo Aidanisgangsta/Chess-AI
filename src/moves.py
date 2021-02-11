@@ -261,7 +261,7 @@ def promotion():
 
 def stalemate():
     """
-    A fucntion that checks if the player is in stalemate.
+    A function that checks if the player is in stalemate.
     """
 
     global whos_move
@@ -279,9 +279,8 @@ def checkmate():
         pass
     else:
         return False
-    print(in_check)
 
-def random_move_gen():
+def move_gen() -> list:
     """
     A function that generates all the moves possible by the pieces.
     """

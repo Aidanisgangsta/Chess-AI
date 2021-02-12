@@ -130,3 +130,6 @@ dmypy.json
 
 # Remove .VSCodeCounter
 .VSCodeCounter/
+
+# Removes settings.json
+.vscode/settings.json

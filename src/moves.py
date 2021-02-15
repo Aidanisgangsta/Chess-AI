@@ -6,7 +6,7 @@ import re
 #Variable which is 1 when it is whites move and -1 when it is blacks move. 
 #Keeps track of whose move it is and gets multiplied by the move value when checking if the move is valid.
 #This is so pawn moves are properly tested.
-whos_move = 1
+whos_move = -1
 
 move = ""
 
@@ -68,7 +68,8 @@ def make_move() -> None:
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
                 valid_move = move_handler()
-                if valid_move:
+                if valid_move:                    
+                    board.chessboard = tuple(boardstate)
                     print("\nOk, your move has been made\n")
                     #Changes whos move it is
                     whos_move *= -1
@@ -229,7 +230,6 @@ def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
             if check_checker(boardstate):
                 return False
             
-            board.chessboard = tuple(boardstate)
             return True
         else:
             return False    
@@ -269,15 +269,20 @@ def stalemate():
 
     global boardstate
 
-    unmodified_board = boardstate[:]
+    unmodified_board = list(boardstate[:])
 
     moves = move_gen()
 
     for move in moves:
         possible_move = move_handler(move[0], move[1], move[2])
-        print(move)
-        print(possible_move)
-        boardstate = unmodified_board[:]
+        
+        print(1)
+        board.printboard(boardstate)
+        print(2)
+        board.printboard(unmodified_board)
+        boardstate = list(unmodified_board[:])
+        #print(move)
+        #print(possible_move)
 
         if possible_move:
             return False

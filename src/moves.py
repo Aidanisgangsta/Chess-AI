@@ -195,7 +195,7 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
         "q": pc.queen_check
         }
 
-    return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves, distance_moved)
+    return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves)
 
 def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
     """

@@ -181,8 +181,6 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
 
     #Finds the tuple of available move directions from the dictionary of moves
     available_moves = piece_moves.get(piece_moved.casefold())
-    #Total distance moved by the piece in the array
-    distance_moved = end_array_location - array_location
 
     piece_lower = piece_moved.casefold()
 
@@ -274,12 +272,10 @@ def stalemate():
     moves = move_gen()
 
     for move in moves:
-        possible_move = move_handler(move[0], move[1], move[2])
-        
-        print(1)
+        print(move[0], move[1], move[2])
         board.printboard(boardstate)
-        print(2)
-        board.printboard(unmodified_board)
+        possible_move = move_handler(boardstate, move[0], move[1], move[2])
+        
         boardstate = list(unmodified_board[:])
         #print(move)
         #print(possible_move)

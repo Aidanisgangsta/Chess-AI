@@ -12,9 +12,6 @@ move = ""
 
 board_history = []
 
-#Creates a new board as a list
-boardstate = list(board.chessboard)
-
 halfmove_checker = 0
 
 N = -10
@@ -31,7 +28,7 @@ piece_moves = {
     "k": (N, E, S, W, N+W, N+E, S+W, S+E, E+E, W+W)
 }
 
-def make_move() -> None:
+def make_move(boardstate) -> None:
     """
     Function which a user enters move and it is checked whether it meets the correct format.\n
 
@@ -43,7 +40,6 @@ def make_move() -> None:
 
     while True:
         global move
-        global boardstate
         global whos_move
 
         #Checks if the side is in checkmate or stalemate
@@ -55,7 +51,7 @@ def make_move() -> None:
             elif whos_move == -1:
                 print("White won by checkmate")
                 break
-        in_stalemate = stalemate()
+        in_stalemate = stalemate(boardstate)
         print(in_stalemate, whos_move)
         if in_stalemate:
             print("\nDraw by stalemate")
@@ -67,7 +63,7 @@ def make_move() -> None:
             #Checks if move is on the board
             valid_move = bool(re.match(r"[a-h][1-8][a-h][1-8]", move))
             if valid_move:
-                valid_move = move_handler()
+                valid_move = move_handler(boardstate)
                 if valid_move:                    
                     board.chessboard = tuple(boardstate)
                     print("\nOk, your move has been made\n")
@@ -75,7 +71,7 @@ def make_move() -> None:
                     whos_move *= -1
                     break
                 else:
-                    boardstate = list(board.chessboard)
+                    boardstate = list(board.chessboard)[:]
                     print("\nPlease enter a valid move")
             else:
                 print("\nPlease enter a move in the correct format (e.g. a1c3)")
@@ -99,7 +95,7 @@ def square_finder(start_square: str, end_square: str) -> tuple:
 
     return start_square_array_value, end_square_array_value
 
-def blank_checker(array_location: str) -> bool:
+def blank_checker(array_location: str, boardstate) -> bool:
     """
     A function that checks whether the enter start square is blank or not.\n
 
@@ -112,7 +108,7 @@ def blank_checker(array_location: str) -> bool:
     else:
         return False
 
-def colour_checker(array_location: int) -> bool:
+def colour_checker(array_location: int, boardstate) -> bool:
     """
     A function which checks if the piece to move is the correct colour.
     """
@@ -195,7 +191,7 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
 
     return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves)
 
-def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
+def move_handler(boardstate, array_location=0, end_array_location=0, piece_moved=0) -> bool:
     """
     A function that handles and runs all the checks.
     """
@@ -210,19 +206,19 @@ def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
         piece_moved = board.chessboard[array_location]
 
     #Finds out if the start square entered is blank
-    if blank_checker(array_location):
+    if blank_checker(array_location, boardstate):
         return False
     else:
         if move_checker(array_location, end_array_location, piece_moved):
 
             #Check if the piece entered is the correct colour
-            if colour_checker(array_location) == False:
+            if colour_checker(array_location, boardstate) == False:
                 return False
             
-            modify_board(piece_moved, array_location, end_array_location)
+            boardstate = modify_board(piece_moved, array_location, end_array_location, boardstate)
 
             #Checks if a pawn can be promoted
-            promotion()
+            boardstate = promotion(boardstate)
 
             #Checks if the new board has the players king in check
             if check_checker(boardstate):
@@ -232,12 +228,10 @@ def move_handler(array_location=0, end_array_location=0, piece_moved=0) -> bool:
         else:
             return False    
 
-def promotion():
+def promotion(boardstate) -> list:
     """
     A function that deals with a pawn that has promoted.
     """
-
-    global boardstate
 
     if whos_move == 1:
         for i in range(11, 19):
@@ -259,13 +253,13 @@ def promotion():
                         break
                     else:
                         print("\nPlease enter a valid piece (N, B, R, Q)")
+    
+    return boardstate
 
-def stalemate():
+def stalemate(boardstate):
     """
     A function that checks if the player is in stalemate.
     """
-
-    global boardstate
 
     unmodified_board = list(boardstate[:])
 
@@ -275,7 +269,7 @@ def stalemate():
         print(move[0], move[1], move[2])
         board.printboard(boardstate)
         possible_move = move_handler(boardstate, move[0], move[1], move[2])
-        
+        board.printboard(boardstate)
         boardstate = list(unmodified_board[:])
         #print(move)
         #print(possible_move)
@@ -290,14 +284,14 @@ def checkmate():
     A function that checks if the player is in checkmate.
     """
 
-    unmodified_board = boardstate.copy()
+    # unmodified_board = boardstate.copy()
 
-    in_check = check_checker(boardstate)
+    # in_check = check_checker(boardstate)
     
-    if in_check:
-        pass
-    else:
-        return False
+    # if in_check:
+    #     pass
+    # else:
+    #     return False
 
 def move_gen() -> list:
     """
@@ -366,7 +360,7 @@ def threefold_check() -> bool:
     else:
         return False
 
-def modify_board(piece_moved: str, start_square: int, end_square: int) -> None:
+def modify_board(piece_moved: str, start_square: int, end_square: int, boardstate) -> list:
     """
     A function that modifies the board to show the move that has been made.\n
 
@@ -377,8 +371,9 @@ def modify_board(piece_moved: str, start_square: int, end_square: int) -> None:
      - The board is set to = the new board as a tuple.
     """
 
-    global boardstate
     #Replaces pieces old location with a blank square
     boardstate[start_square] = "."
     #Replaces the old square with the new piece
     boardstate[end_square] = piece_moved
+
+    return boardstate

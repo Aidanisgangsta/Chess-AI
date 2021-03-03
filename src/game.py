@@ -2,11 +2,14 @@ import board
 import moves
 import chess_ai as ai
 
+#Creates a new board as a list
+boardstate = list(board.chessboard)
+
 def game():
     while True:
         moves.board_history.append(board.chessboard)
         board.printboard(board.chessboard)
-        moves.make_move()
+        moves.make_move(boardstate)
         moves.halfmove_checker += 1
 
         #Checks for threefold repition

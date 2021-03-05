@@ -52,7 +52,6 @@ def make_move(boardstate: list) -> None:
                 print("White won by checkmate")
                 break
         in_stalemate = stalemate(boardstate)
-        print(in_stalemate, whos_move)
         if in_stalemate:
             print("\nDraw by stalemate")
             break
@@ -221,6 +220,8 @@ def move_handler(boardstate: list, array_location: int = 0, end_array_location: 
             boardstate = promotion(boardstate)
 
             #Checks if the new board has the players king in check
+            board.printboard(boardstate)
+            print(check_checker(boardstate))
             if check_checker(boardstate):
                 return False
             
@@ -266,13 +267,12 @@ def stalemate(boardstate: list) -> bool:
     moves = move_gen()
 
     for move in moves:
-        print(move[0], move[1], move[2])
-        board.printboard(boardstate)
+        # print(move)
+        # board.printboard(boardstate)
         possible_move = move_handler(boardstate, move[0], move[1], move[2])
-        board.printboard(boardstate)
+        # print(possible_move)
+        # board.printboard(boardstate)
         boardstate = list(unmodified_board[:])
-        #print(move)
-        #print(possible_move)
 
         if possible_move:
             return False

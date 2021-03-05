@@ -28,7 +28,7 @@ piece_moves = {
     "k": (N, E, S, W, N+W, N+E, S+W, S+E, E+E, W+W)
 }
 
-def make_move(boardstate) -> None:
+def make_move(boardstate: list) -> None:
     """
     Function which a user enters move and it is checked whether it meets the correct format.\n
 
@@ -95,7 +95,7 @@ def square_finder(start_square: str, end_square: str) -> tuple:
 
     return start_square_array_value, end_square_array_value
 
-def blank_checker(array_location: str, boardstate) -> bool:
+def blank_checker(array_location: str, boardstate: list) -> bool:
     """
     A function that checks whether the enter start square is blank or not.\n
 
@@ -108,7 +108,7 @@ def blank_checker(array_location: str, boardstate) -> bool:
     else:
         return False
 
-def colour_checker(array_location: int, boardstate) -> bool:
+def colour_checker(array_location: int, boardstate: list) -> bool:
     """
     A function which checks if the piece to move is the correct colour.
     """
@@ -170,7 +170,7 @@ def check_checker(brd: list) -> bool:
                     return True
     return False  
 
-def move_checker(array_location, end_array_location, piece_moved) -> bool:
+def move_checker(array_location: int, end_array_location: int, piece_moved: str) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
     """
@@ -191,7 +191,7 @@ def move_checker(array_location, end_array_location, piece_moved) -> bool:
 
     return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves)
 
-def move_handler(boardstate, array_location=0, end_array_location=0, piece_moved=0) -> bool:
+def move_handler(boardstate: list, array_location: int = 0, end_array_location: int = 0, piece_moved: str = "") -> bool:
     """
     A function that handles and runs all the checks.
     """
@@ -199,7 +199,7 @@ def move_handler(boardstate, array_location=0, end_array_location=0, piece_moved
     start_square = move[0:2]
     end_square = move[2:4]
 
-    if piece_moved == 0:
+    if piece_moved == "":
         #Gets the array values for the start square and end square for the move
         array_location, end_array_location = square_finder(start_square, end_square)
         #Gets the piece you selected and converts it to lowercase
@@ -228,7 +228,7 @@ def move_handler(boardstate, array_location=0, end_array_location=0, piece_moved
         else:
             return False    
 
-def promotion(boardstate) -> list:
+def promotion(boardstate: list) -> list:
     """
     A function that deals with a pawn that has promoted.
     """
@@ -256,7 +256,7 @@ def promotion(boardstate) -> list:
     
     return boardstate
 
-def stalemate(boardstate):
+def stalemate(boardstate: list) -> bool:
     """
     A function that checks if the player is in stalemate.
     """
@@ -279,7 +279,7 @@ def stalemate(boardstate):
     
     return True
 
-def checkmate():
+def checkmate() -> bool:
     """
     A function that checks if the player is in checkmate.
     """
@@ -360,7 +360,7 @@ def threefold_check() -> bool:
     else:
         return False
 
-def modify_board(piece_moved: str, start_square: int, end_square: int, boardstate) -> list:
+def modify_board(piece_moved: str, start_square: int, end_square: int, boardstate: list) -> list:
     """
     A function that modifies the board to show the move that has been made.\n
 

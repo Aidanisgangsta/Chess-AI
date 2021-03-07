@@ -29,7 +29,7 @@ piece_moves = {
     "k": (N, E, S, W, N+W, N+E, S+W, S+E, E+E, W+W)
 }
 
-def make_move(boardstate: list) -> None:
+def make_move(boardstate: list) -> bool:
     """
     Function which a user enters move and it is checked whether it meets the correct format.\n
 
@@ -48,14 +48,14 @@ def make_move(boardstate: list) -> None:
         if in_checkmate:
             if whos_move == 1:
                 print("Black won by checkmate")
-                break
+                return True
             elif whos_move == -1:
                 print("White won by checkmate")
-                break
+                return True
         in_stalemate = stalemate(boardstate)
         if in_stalemate:
             print("\nDraw by stalemate")
-            break
+            return True
 
         move = input("\nPlease enter a move: ")
         #Checks whether if it is a valid move

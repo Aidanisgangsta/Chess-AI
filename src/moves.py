@@ -44,13 +44,13 @@ def make_move(boardstate: list) -> bool:
         global whos_move
 
         #Checks if the side is in checkmate or stalemate
-        in_checkmate = checkmate()
+        in_checkmate = checkmate(boardstate)
         if in_checkmate:
             if whos_move == 1:
-                print("Black won by checkmate")
+                print("\nBlack won by checkmate")
                 return True
             elif whos_move == -1:
-                print("White won by checkmate")
+                print("\nWhite won by checkmate")
                 return True
         in_stalemate = stalemate(boardstate)
         if in_stalemate:
@@ -271,19 +271,20 @@ def stalemate(boardstate: list) -> bool:
     
     return True
 
-def checkmate() -> bool:
+def checkmate(boardstate: list) -> bool:
     """
     A function that checks if the player is in checkmate.
     """
 
-    # unmodified_board = boardstate.copy()
+    in_stalemate = stalemate(boardstate)
 
-    # in_check = check_checker(boardstate)
-    
-    # if in_check:
-    #     pass
-    # else:
-    #     return False
+    if in_stalemate:
+        if check_checker(boardstate):
+            return True
+        else:
+            return False
+    else:
+        return False
 
 def move_gen() -> list:
     """

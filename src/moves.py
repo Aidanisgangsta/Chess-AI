@@ -126,7 +126,7 @@ def colour_checker(array_location: int, boardstate: list) -> bool:
         else:
             return False
 
-def check_checker(brd: list) -> bool:
+def check_checker(boardstate: list) -> bool:
     """
     A function that takes in a board state and checks if the player is in check.\n
 
@@ -139,19 +139,19 @@ def check_checker(brd: list) -> bool:
     
     #Finds location of current colours king 
     king_location = -1
-    for i in range(len(brd)):
+    for i in range(len(boardstate)):
         if whos_move == 1:
-            if brd[i] == "K":
+            if boardstate[i] == "K":
                 king_location = i
         elif whos_move == -1:
-            if brd[i] == "k":
+            if boardstate[i] == "k":
                 king_location = i
 
     #Iterates over every square in the board
     #Checks if the piece on that sqaure can attack the king
-    for i in range(len(brd)):
+    for square in range(len(boardstate)):
         #Checks if it is whites move
-        piece = brd[i]
+        piece = boardstate[square]
         if whos_move == 1:
             if piece.islower():
                 #Checks if the move is a legit move

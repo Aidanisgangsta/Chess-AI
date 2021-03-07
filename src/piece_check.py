@@ -1,7 +1,7 @@
 import moves as m
 import board
 
-def pawn_check(array_location, end_array_location, available_moves) -> bool:
+def pawn_check(array_location, end_array_location, available_moves, boardstate) -> bool:
     """
     A function that checks if a pawn move is possible
     """
@@ -11,9 +11,9 @@ def pawn_check(array_location, end_array_location, available_moves) -> bool:
             #Checks if move is straight forward
             if move % 10 == 0:
                 #Checks if sqaure infront of the pawn is blank
-                if game.boardstate[array_location - (m.whos_move * 10)] == ".":
+                if boardstate[array_location - (m.whos_move * 10)] == ".":
                     #Checks for moving 2 squares 
-                    if move == 20 and game.boardstate[end_array_location] == ".":
+                    if move == 20 and boardstate[end_array_location] == ".":
                         #Checks if the pawn is on the starting rank
                         if m.whos_move == 1:
                             if array_location <= 80 and array_location >= 89:
@@ -28,7 +28,7 @@ def pawn_check(array_location, end_array_location, available_moves) -> bool:
                     return False
             #Checks for captures
             else:
-                end_piece = game.boardstate[end_array_location]
+                end_piece = boardstate[end_array_location]
                 #Checks for basic captures
                 if m.whos_move == 1:
                     if end_piece.islower():
@@ -40,10 +40,10 @@ def pawn_check(array_location, end_array_location, available_moves) -> bool:
                 if end_piece == ".": 
                     if m.whos_move == 1:
                         #Checks if there is a pawn next to the pawn and if it has moved 2 squares
-                        if game.boardstate[end_array_location + 10] == "p" and game.boardstate[end_array_location - 10] == ".":
+                        if boardstate[end_array_location + 10] == "p" and boardstate[end_array_location - 10] == ".":
                             #Checks the last boardstate
                             if m.board_history[-2][end_array_location + 10] == "." and m.board_history[-2][end_array_location - 10] == "p":
-                                game.boardstate[end_array_location + 10] = "."
+                                boardstate[end_array_location + 10] = "."
                                 return True
                             else:
                                 return False
@@ -51,10 +51,10 @@ def pawn_check(array_location, end_array_location, available_moves) -> bool:
                             return False
                     elif m.whos_move == -1:
                         #Checks if there is a pawn next to the pawn and if it has moved 2 squares
-                        if game.boardstate[end_array_location - 10] == "P" and game.boardstate[end_array_location + 10] == ".":
+                        if boardstate[end_array_location - 10] == "P" and boardstate[end_array_location + 10] == ".":
                             #Checks the last boardstate
                             if m.board_history[-2][end_array_location - 10] == "." and m.board_history[-2][end_array_location + 10] == "P":
-                                game.boardstate[end_array_location - 10] = "."
+                                boardstate[end_array_location - 10] = "."
                                 return True
                             else:
                                 return False
@@ -63,7 +63,7 @@ def pawn_check(array_location, end_array_location, available_moves) -> bool:
                 else:
                     return False
 
-def rook_check(array_location, end_array_location, available_moves) -> bool:
+def rook_check(array_location, end_array_location, available_moves, boardstate) -> bool:
     """
     A function that checks if a rook move is possible
     """
@@ -75,22 +75,22 @@ def rook_check(array_location, end_array_location, available_moves) -> bool:
             #Checks to see if the index is within the tuple
             if (array_location + (i * move)) < 99 and (array_location + (i * move)) > 20:
                 #Checks if every square along the row is blank or if the end square can be captured
-                if game.boardstate[array_location + (i * move)] == ".":
+                if boardstate[array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
                     if array_location + (i * move) == end_array_location:
                         return True
 
                 #Checks if any squares are not blank in the move
-                elif game.boardstate[array_location + (i * move)] != ".":
+                elif boardstate[array_location + (i * move)] != ".":
                     #Checks if the move is a possible capture
                     if m.whos_move == 1:
-                        if game.boardstate[array_location + (i * move)].islower():
+                        if boardstate[array_location + (i * move)].islower():
                             if array_location + (i * move) == end_array_location:
                                 return True
                             else:
                                 break
                     elif m.whos_move == -1:
-                        if game.boardstate[array_location + (i * move)].isupper():
+                        if boardstate[array_location + (i * move)].isupper():
                             if array_location + (i * move) == end_array_location:
                                 return True
                             else:
@@ -98,7 +98,7 @@ def rook_check(array_location, end_array_location, available_moves) -> bool:
                     return False
     return False
 
-def bishop_check(array_location, end_array_location, available_moves) -> bool:
+def bishop_check(array_location, end_array_location, available_moves, boardstate) -> bool:
     """
     A function that checks if a bishop move is possible
     """
@@ -110,22 +110,22 @@ def bishop_check(array_location, end_array_location, available_moves) -> bool:
             #Checks to see if the index is within the tuple
             if (array_location + (i * move)) < 99 and (array_location + (i * move)) > 20:
                 #Checks if every square along the row is blank or if the end square can be captured
-                if game.boardstate[array_location + (i * move)] == ".":
+                if boardstate[array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
                     if array_location + (i * move) == end_array_location:
                         return True
 
                 #Checks if any squares are not blank in the move
-                elif game.boardstate[array_location + (i * move)] != ".":
+                elif boardstate[array_location + (i * move)] != ".":
                     #Checks if the move is a possible capture
                     if m.whos_move == 1:
-                        if game.boardstate[array_location + (i * move)].islower():
+                        if boardstate[array_location + (i * move)].islower():
                             if array_location + (i * move) == end_array_location:
                                 return True
                             else:
                                 break
                     elif m.whos_move == -1:
-                        if game.boardstate[array_location + (i * move)].isupper():
+                        if boardstate[array_location + (i * move)].isupper():
                             if array_location + (i * move) == end_array_location:
                                 return True
                             else:
@@ -133,7 +133,7 @@ def bishop_check(array_location, end_array_location, available_moves) -> bool:
                     return False
     return False
 
-def king_check(array_location, end_array_location, available_moves) -> bool:
+def king_check(array_location, end_array_location, available_moves, boardstate) -> bool:
     """
     A function that checks if a king move is possible
     """
@@ -143,20 +143,20 @@ def king_check(array_location, end_array_location, available_moves) -> bool:
         #Checks if the start location + the change is direction by the move in the array = end location
         if array_location + move == end_array_location:
             #Checks if the move lands on a clear square
-            if game.boardstate[end_array_location] == ".":
+            if boardstate[end_array_location] == ".":
                 #Checks for kingside castling
                 if move == 2:
                     if m.whos_move == 1:
                         #Checks if the square to the right of the king is blank
-                        if game.boardstate[array_location + 1] == ".":
+                        if boardstate[array_location + 1] == ".":
                             #Checks if the rook is on the edge of the board
-                            if game.boardstate[array_location + 3] == "R":
+                            if boardstate[array_location + 3] == "R":
                                 #Checks if the king or rook have moved throughout the game
                                 for brd in m.board_history:
                                     if brd[array_location] != "K" or brd[array_location + 3] != "R":
                                         return False
-                                game.boardstate[array_location + 1] = "R"
-                                game.boardstate[array_location + 3] = "."
+                                boardstate[array_location + 1] = "R"
+                                boardstate[array_location + 3] = "."
                                 return True
                             else:
                                 return False
@@ -164,15 +164,15 @@ def king_check(array_location, end_array_location, available_moves) -> bool:
                             return False
                     elif m.whos_move == -1:
                         #Checks if the square to the right of the king is blank
-                        if game.boardstate[array_location + 1] == ".":
+                        if boardstate[array_location + 1] == ".":
                         #Checks if the rook is on the edge of the board
-                            if game.boardstate[array_location + 3] == "r":
+                            if boardstate[array_location + 3] == "r":
                                 #Checks if the king or rook have moved throughout the game
                                 for brd in m.board_history:
                                     if brd[array_location] != "k" or brd[array_location + 3] != "r":
                                         return False
-                                game.boardstate[array_location + 1] = "r"
-                                game.boardstate[array_location + 3] = "."
+                                boardstate[array_location + 1] = "r"
+                                boardstate[array_location + 3] = "."
                                 return True
                             else:
                                 return False
@@ -185,15 +185,15 @@ def king_check(array_location, end_array_location, available_moves) -> bool:
                 elif move == -2:
                     if m.whos_move == 1:
                         #Checks if the square to the left of the king is blank
-                        if game.boardstate[array_location - 1] == "." and game.boardstate[array_location - 3] == ".":
+                        if boardstate[array_location - 1] == "." and boardstate[array_location - 3] == ".":
                             #Checks if the rook is on the edge of the board
-                            if game.boardstate[array_location - 4] == "R":
+                            if boardstate[array_location - 4] == "R":
                                 #Checks if the king or rook have moved throughout the game
                                 for brd in m.board_history:
                                     if brd[array_location] != "K" or brd[array_location - 4] != "R":
                                         return False
-                                game.boardstate[array_location - 1] = "R"
-                                game.boardstate[array_location - 4] = "."
+                                boardstate[array_location - 1] = "R"
+                                boardstate[array_location - 4] = "."
                                 return True
                             else:
                                 return False
@@ -201,15 +201,15 @@ def king_check(array_location, end_array_location, available_moves) -> bool:
                             return False
                     elif m.whos_move == -1:
                         #Checks if the square to the left of the king is blank
-                        if game.boardstate[array_location - 1] == "." and game.boardstate[array_location - 3] == ".":
+                        if boardstate[array_location - 1] == "." and boardstate[array_location - 3] == ".":
                             #Checks if the rook is on the edge of the board
-                            if game.boardstate[array_location - 4] == "r":
+                            if boardstate[array_location - 4] == "r":
                                 #Checks if the king or rook have moved throughout the game
                                 for brd in m.board_history:
                                     if brd[array_location] != "k" or brd[array_location - 4] != "r":
                                         return False
-                                game.boardstate[array_location - 1] = "r"
-                                game.boardstate[array_location - 4] = "."
+                                boardstate[array_location - 1] = "r"
+                                boardstate[array_location - 4] = "."
                                 return True
                             else:
                                 return False
@@ -222,7 +222,7 @@ def king_check(array_location, end_array_location, available_moves) -> bool:
                     return True
             else:
                 #Checks if the move is a possible capture
-                piece_to_capture = game.boardstate[end_array_location]
+                piece_to_capture = boardstate[end_array_location]
                 if m.whos_move == 1:
                     if piece_to_capture.islower():
                         return True
@@ -233,7 +233,7 @@ def king_check(array_location, end_array_location, available_moves) -> bool:
                     return False
     return False
 
-def knight_check(array_location, end_array_location, available_moves) -> bool:
+def knight_check(array_location, end_array_location, available_moves, boardstate) -> bool:
     """
     A function that checks if a knight move is possible.
     """
@@ -243,10 +243,10 @@ def knight_check(array_location, end_array_location, available_moves) -> bool:
         #Checks if the start location + the change in location by the move = end location
         if array_location + move == end_array_location:
             #Checks if the move lands on a clear square
-            if game.boardstate[end_array_location] == ".":
+            if boardstate[end_array_location] == ".":
                 return True
             else:
-                piece_to_capture = game.boardstate[end_array_location]
+                piece_to_capture = boardstate[end_array_location]
                 if m.whos_move == 1:
                     if piece_to_capture.islower():
                         return True
@@ -257,7 +257,7 @@ def knight_check(array_location, end_array_location, available_moves) -> bool:
                     return False
     return False
 
-def queen_check(array_location, end_array_location, available_moves) -> bool:
+def queen_check(array_location, end_array_location, available_moves, boardstate) -> bool:
     """
     A function that checks if a queen move is possible
     """
@@ -269,22 +269,22 @@ def queen_check(array_location, end_array_location, available_moves) -> bool:
             #Checks to see if the index is within the tuple
             if (array_location + (i * move)) < 99 and (array_location + (i * move)) > 20:
                 #Checks if every square along the row is blank or if the end square can be captured
-                if game.boardstate[array_location + (i * move)] == ".":
+                if boardstate[array_location + (i * move)] == ".":
                     #Checks if the start location + the change is direction by the move in the array = end location
                     if array_location + (i * move) == end_array_location:
                         return True
 
                 #Checks if any squares are not blank in the move
-                elif game.boardstate[array_location + (i * move)] != ".":
+                elif boardstate[array_location + (i * move)] != ".":
                     #Checks if the move is a possible capture
                     if m.whos_move == 1:
-                        if game.boardstate[array_location + (i * move)].islower():
+                        if boardstate[array_location + (i * move)].islower():
                             if array_location + (i * move) == end_array_location:
                                 return True
                             else:
                                 break
                     elif m.whos_move == -1:
-                        if game.boardstate[array_location + (i * move)].isupper():
+                        if boardstate[array_location + (i * move)].isupper():
                             if array_location + (i * move) == end_array_location:
                                 return True
                             else:

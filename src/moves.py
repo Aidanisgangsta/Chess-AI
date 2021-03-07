@@ -1,5 +1,6 @@
 import board
 import piece_check as pc
+import game
 
 import re
 
@@ -155,7 +156,7 @@ def check_checker(brd: list) -> bool:
             if piece.islower():
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(i, king_location, piece)
+                move_check = move_checker(square, king_location, piece, boardstate)
                 whos_move *= -1
                 if move_check:
                     return True
@@ -163,13 +164,13 @@ def check_checker(brd: list) -> bool:
             if piece.isupper():
                 #Checks if the move is a legit move
                 whos_move *= -1
-                move_check = move_checker(i, king_location, piece)
+                move_check = move_checker(square, king_location, piece, boardstate)
                 whos_move *= -1
                 if move_check:
                     return True
     return False  
 
-def move_checker(array_location: int, end_array_location: int, piece_moved: str) -> bool:
+def move_checker(array_location: int, end_array_location: int, piece_moved: str, boardstate: list = game.boardstate) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
     """
@@ -188,7 +189,7 @@ def move_checker(array_location: int, end_array_location: int, piece_moved: str)
         "q": pc.queen_check
         }
 
-    return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves)
+    return PieceFuncDict[piece_lower](int(array_location), end_array_location, available_moves, boardstate)
 
 def move_handler(boardstate: list, array_location: int = 0, end_array_location: int = 0, piece_moved: str = "") -> bool:
     """
@@ -208,7 +209,7 @@ def move_handler(boardstate: list, array_location: int = 0, end_array_location: 
     if blank_checker(array_location, boardstate):
         return False
     else:
-        if move_checker(array_location, end_array_location, piece_moved):
+        if move_checker(array_location, end_array_location, piece_moved, boardstate):
 
             #Check if the piece entered is the correct colour
             if colour_checker(array_location, boardstate) == False:

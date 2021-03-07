@@ -220,8 +220,6 @@ def move_handler(boardstate: list, array_location: int = 0, end_array_location: 
             boardstate = promotion(boardstate)
 
             #Checks if the new board has the players king in check
-            board.printboard(boardstate)
-            print(check_checker(boardstate))
             if check_checker(boardstate):
                 return False
             
@@ -262,17 +260,10 @@ def stalemate(boardstate: list) -> bool:
     A function that checks if the player is in stalemate.
     """
 
-    unmodified_board = list(boardstate[:])
-
     moves = move_gen()
 
     for move in moves:
-        # print(move)
-        # board.printboard(boardstate)
         possible_move = move_handler(boardstate, move[0], move[1], move[2])
-        # print(possible_move)
-        # board.printboard(boardstate)
-        boardstate = list(unmodified_board[:])
 
         if possible_move:
             return False

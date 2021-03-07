@@ -1,6 +1,5 @@
 import moves as m
 import board
-import game
 
 def pawn_check(array_location, end_array_location, available_moves) -> bool:
     """

@@ -273,11 +273,11 @@ def mate_check(boardstate: list) -> int:
         if possible_move:
             return 0
 
-        # Checks if the player is in check for stalemate vs checkmate
-        if check_checker(boardstate):
-            return 1
-        else:
-            return -1
+    # Checks if the player is in check for stalemate vs checkmate
+    if check_checker(boardstate):
+        return 1
+    else:
+        return -1
 
 def move_gen() -> list:
     """

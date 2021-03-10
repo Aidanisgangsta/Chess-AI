@@ -174,10 +174,10 @@ def move_checker(array_location: int, end_array_location: int, piece_moved: str,
     A function that checks if the piece moved has made a legal move or not.
     """
 
-    #Finds the tuple of available move directions from the dictionary of moves
-    available_moves = piece_moves.get(piece_moved.casefold())
-
     piece_lower = piece_moved.casefold()
+
+    #Finds the tuple of available move directions from the dictionary of moves
+    available_moves = piece_moves.get(piece_lower)
 
     PieceFuncDict = {
         "p": pc.pawn_check, 

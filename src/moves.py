@@ -192,7 +192,10 @@ def move_checker(array_location: int, end_array_location: int, piece_moved: str,
 
 def move_handler(boardstate: list, array_location: int = 0, end_array_location: int = 0, piece_moved: str = "") -> bool:
     """
-    A function that handles and runs all the checks.
+    A function that handles and runs all the checks.\n
+
+     - Returns True if the move is valid.
+     - Returns False if the move is not valid.
     """
 
     start_square = move[0:2]

@@ -44,7 +44,7 @@ def make_move(boardstate: list) -> bool:
         global whos_move
 
         #Checks if the side is in checkmate or stalemate
-        if_mated = mate_check(boardstate[:])
+        if_mated = mate_check(boardstate[:], whos_move)
         if if_mated == 1:
             if whos_move == 1:
                 print("\nBlack won by checkmate")
@@ -258,7 +258,7 @@ def promotion(boardstate: list) -> list:
     
     return boardstate
 
-def mate_check(boardstate: list) -> int:
+def mate_check(boardstate: list, whos_move: int) -> int:
     """
     A function the checks if the player is in checkmate or stalemate.\n
 
@@ -267,8 +267,8 @@ def mate_check(boardstate: list) -> int:
      - If the player is neither in checkmate or stalemate, return 0.
     """
 
-    moves = move_gen()
     for i in range(2):
+        moves = move_gen(whos_move)
 
         for move in moves:
             # Checks if the player has a legal move
@@ -290,7 +290,7 @@ def mate_check(boardstate: list) -> int:
     # Returns 0 if there is no stalemate or checkmate
     return 0
 
-def move_gen() -> list:
+def move_gen(whos_move: int) -> list:
     """
     A function that generates all the moves possible by the pieces.
     """

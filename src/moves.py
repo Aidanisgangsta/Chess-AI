@@ -265,19 +265,27 @@ def mate_check(boardstate: list) -> int:
     """
 
     moves = move_gen()
+    for i in range(2):
 
-    for move in moves:
-        # Checks if the player has a legal move
-        possible_move = move_handler(boardstate, move[0], move[1], move[2])
+        for move in moves:
+            # Checks if the player has a legal move
+            possible_move = move_handler(boardstate, move[0], move[1], move[2])
+            if possible_move:
+                break
 
-        if possible_move:
-            return 0
+        if not possible_move:
+            # Checks if the player is in checkmate
+            if check_checker(boardstate):
+                return 1
+            else:
+                # Checks if whos_move has been modified 
+                if i == 0:
+                    return -1
 
-    # Checks if the player is in check for stalemate vs checkmate
-    if check_checker(boardstate):
-        return 1
-    else:
-        return -1
+        whos_move *= -1
+    
+    # Returns 0 if there is no stalemate or checkmate
+    return 0
 
 def move_gen() -> list:
     """

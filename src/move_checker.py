@@ -4,6 +4,22 @@ import piece_check as pc
 
 import re
 
+whites_move = True
+
+N = -10
+E = 1
+S = 10
+W = -1
+
+piece_moves = {
+    "p": (N, N+N, N+E, N+W),
+    "r": (N, E, S, W),
+    "n": (N+N+W, N+N+E, E+E+N, E+E+S, S+S+E, S+S+W, W+W+S, W+W+N),
+    "b": (N+W, N+E, S+W, S+E),
+    "q": (N, E, S, W, N+W, N+E, S+W, S+E),
+    "k": (N, E, S, W, N+W, N+E, S+W, S+E, E+E, W+W)
+}
+
 def move_vaildator(move: str) -> bool:
     """
     A function that checks if the users move meets the correct format.\n

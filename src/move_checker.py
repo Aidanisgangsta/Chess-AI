@@ -6,6 +6,8 @@ import re
 
 whites_move = True
 
+boardstate = list(board.chessboard)
+
 N = -10
 E = 1
 S = 10

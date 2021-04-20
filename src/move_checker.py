@@ -40,3 +40,16 @@ def move_vaildator(move: str) -> bool:
     else:
         print("Please enter a valid move")
         return False
+
+def colour_checker(board_location: int) -> bool:
+    """
+    A function that checks if the piece moved is the correct colour.
+    """
+
+    piece: str = boardstate[board_location]
+
+    if whites_move:
+        return piece.isupper()
+    return piece.islower()
+
+def blank_checker(borad_location: int) -> bool:

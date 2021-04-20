@@ -61,7 +61,7 @@ def blank_checker(board_location: int) -> bool:
 
     square = boardstate[board_location]
 
-    if square == ".": 
+    return square == "."
 def is_long_distance_piece(piece: str) -> bool:
     """
     A function that checks if the piece can move more than one square in a specefic direction

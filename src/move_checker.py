@@ -54,3 +54,13 @@ def colour_checker(board_location: int) -> bool:
         return piece.isupper()
     return piece.islower()
 
+def blank_checker(board_location: int) -> bool:
+    """
+    A function that checks if the square entered is blank.
+    """
+
+    square = boardstate[board_location]
+
+    if square == ".": 
+        return True
+    return False

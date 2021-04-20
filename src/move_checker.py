@@ -62,6 +62,37 @@ def blank_checker(board_location: int) -> bool:
     square = boardstate[board_location]
 
     return square == "."
+
+def move_gen() -> list:
+    """
+    A function that generates all the possible moves in the position.
+    """
+
+    moves = []
+
+    for start_square, piece in enumerate(boardstate):
+        if not blank_checker(start_square):
+            if colour_checker(start_square):
+                for move in piece_moves[piece.casefold()]:
+                    # Checks for moves that are more than one square
+                    if is_long_distance_piece(piece):
+                        for distance in range(1, 9):
+                            end_square = start_square + (move * distance)
+                            if not whites_move:
+                                end_square *= -1
+                            if is_valid_move(start_square, end_square):
+                                moves.append((start_square, end_square))
+                            else:
+                                break
+                    else:
+                        end_square = start_square + move
+                        if not whites_move:
+                            end_square *= -1
+                        if is_valid_move(start_square, end_square):
+                            moves.append((start_square, end_square))
+
+    return moves
+
 def is_long_distance_piece(piece: str) -> bool:
     """
     A function that checks if the piece can move more than one square in a specefic direction

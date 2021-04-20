@@ -104,3 +104,15 @@ def is_long_distance_piece(piece: str) -> bool:
     if piece == "b" or piece == "q" or piece == "r": 
         return True
     return False
+
+def is_valid_move(start_square: int, end_square: int) -> bool:
+    """
+    A function that checks if an entered move is legal or not.
+    """
+
+    piece_moved = boardstate[start_square].casefold()
+
+    available_moves = piece_moves.get(piece_moved)
+
+    for move in available_moves:
+        if move + 

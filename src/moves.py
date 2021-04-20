@@ -169,7 +169,7 @@ def check_checker(boardstate: list) -> bool:
                     return True
     return False  
 
-def move_checker(array_location: int, end_array_location: int, piece_moved: str, boardstate: list = game.boardstate) -> bool:
+def move_checker(array_location: int, end_array_location: int, piece_moved: str, boardstate: list) -> bool:
     """
     A function that checks if the piece moved has made a legal move or not.
     """

@@ -62,5 +62,14 @@ def blank_checker(board_location: int) -> bool:
     square = boardstate[board_location]
 
     if square == ".": 
+def is_long_distance_piece(piece: str) -> bool:
+    """
+    A function that checks if the piece can move more than one square in a specefic direction
+    (bishop, queen or rook).
+    """
+
+    piece = piece.casefold()
+
+    if piece == "b" or piece == "q" or piece == "r": 
         return True
     return False

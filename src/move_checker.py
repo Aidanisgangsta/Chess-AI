@@ -113,6 +113,16 @@ def is_valid_move(start_square: int, end_square: int) -> bool:
     piece_moved = boardstate[start_square].casefold()
 
     available_moves = piece_moves.get(piece_moved)
+    if not whites_move:
+        available_moves = [move * -1 for move in available_moves]
 
-    for move in available_moves:
-        if move + 
+    PIECECHECKDICTIONARY = {
+        "p": pc.pawn_check, 
+        "r": pc.rook_check, 
+        "b": pc.bishop_check, 
+        "k": pc.king_check,
+        "n": pc.knight_check, 
+        "q": pc.queen_check
+        }
+
+    return PIECECHECKDICTIONARY[piece_moved](start_square, end_square, available_moves, boardstate)

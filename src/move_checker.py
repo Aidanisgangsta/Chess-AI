@@ -99,9 +99,9 @@ def is_long_distance_piece(piece: str) -> bool:
     (bishop, queen or rook).
     """
 
-    piece = piece.casefold()
+    lwr_piece = piece.casefold()
 
-    if piece == "b" or piece == "q" or piece == "r": 
+    if lwr_piece == "b" or lwr_piece == "q" or lwr_piece == "r": 
         return True
     return False
 

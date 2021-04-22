@@ -76,7 +76,7 @@ def blank_checker(board_location: int) -> bool:
 
     square = boardstate[board_location]
 
-    return square == "."
+    return square == BLANKSQUARE
 def will_be_check(start_square: int, end_square: int):
     """
     A function that checks if the player will be in check after a move.

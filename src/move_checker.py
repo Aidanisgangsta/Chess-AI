@@ -65,6 +65,15 @@ def blank_checker(board_location: int) -> bool:
     square = boardstate[board_location]
 
     return square == "."
+def will_be_check(start_square: int, end_square: int):
+    """
+    A function that checks if the player will be in check after a move.
+    """
+
+    temporary_board = boardstate[:]
+    
+    king_location = king_finder()
+
 def king_finder():
     """
     Finds the current location of the players king.

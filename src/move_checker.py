@@ -46,6 +46,18 @@ def move_vaildator(move: str) -> bool:
         print("Please enter a valid move")
         return False
 
+def is_long_distance_piece(piece: str) -> bool:
+    """
+    A function that checks if the piece can move more than one square in a specefic direction
+    (bishop, queen or rook).
+    """
+
+    lwr_piece = piece.casefold()
+
+    if lwr_piece == "b" or lwr_piece == "q" or lwr_piece == "r": 
+        return True
+    return False
+
 def colour_checker(board_location: int) -> bool:
     """
     A function that checks if the piece moved is the correct colour.
@@ -116,18 +128,6 @@ def move_gen() -> list:
                             moves.append((start_square, end_square))
 
     return moves
-
-def is_long_distance_piece(piece: str) -> bool:
-    """
-    A function that checks if the piece can move more than one square in a specefic direction
-    (bishop, queen or rook).
-    """
-
-    lwr_piece = piece.casefold()
-
-    if lwr_piece == "b" or lwr_piece == "q" or lwr_piece == "r": 
-        return True
-    return False
 
 def is_valid_move(start_square: int, end_square: int) -> bool:
     """

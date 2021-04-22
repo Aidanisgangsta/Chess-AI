@@ -4,6 +4,9 @@ import piece_check as pc
 
 import re
 
+BLANKSQUARE = '.'
+OFFBOARDSQUARE = '-'
+
 whites_move = True
 
 boardstate = list(board.chessboard)
@@ -62,6 +65,18 @@ def blank_checker(board_location: int) -> bool:
     square = boardstate[board_location]
 
     return square == "."
+def king_finder():
+    """
+    Finds the current location of the players king.
+    """
+
+    for i, piece in enumerate(boardstate):
+        if whites_move:
+            if piece == "K":
+                return i
+        else:
+            if piece == "k":
+                return i
 
 def move_gen() -> list:
     """

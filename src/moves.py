@@ -1,6 +1,5 @@
 import board
 import piece_check as pc
-import game
 
 import re
 
